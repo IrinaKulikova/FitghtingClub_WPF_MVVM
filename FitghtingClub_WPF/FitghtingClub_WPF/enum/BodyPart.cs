@@ -4,11 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FightClub
+namespace FitghtingClub_WPF
 {
-    /// <summary>
-    /// перечисление частей тела для удара
-    /// </summary>
     public enum BodyPart
     {
         Head,

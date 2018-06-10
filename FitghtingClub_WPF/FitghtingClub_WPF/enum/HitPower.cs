@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FightClub
+namespace FitghtingClub_WPF
 {
-    //перечисление пределов очком удара
     public enum HitPower
     {
         Min=40,

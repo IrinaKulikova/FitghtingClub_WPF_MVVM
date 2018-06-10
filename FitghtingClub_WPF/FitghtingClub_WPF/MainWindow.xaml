@@ -3,10 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:FitghtingClub_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Fighting Club" Height="750" Width="620" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <sys:Double x:Key="sizeFont">14</sys:Double>
+        <sys:Double x:Key="widthButtons">60</sys:Double>
+        <sys:Double x:Key="heightButtons">36</sys:Double>
+        <Thickness x:Key="margin">8</Thickness>
+        <Thickness x:Key="padding">8</Thickness>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0" ItemsSource="{Binding players}" SelectedIndex="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid></Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
