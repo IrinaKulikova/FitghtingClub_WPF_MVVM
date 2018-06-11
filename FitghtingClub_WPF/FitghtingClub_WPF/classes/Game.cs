@@ -11,13 +11,10 @@ namespace FitghtingClub_WPF
     class Game : INotifyPropertyChanged
     {
         public int Round { get; private set; }
-
-        // колличество играков по умолчанию
-        int _count = 2;
-        BasePlayer[] Players;
-        int _currentPlayer;        
-        public event PropertyChangedEventHandler PropertyChanged;        
+        public List<BasePlayer> Players { get; private set; }
         private bool _gameIsNotOwer;
+        int _currentPlayer;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public bool GameIsNotOwer
         {
@@ -25,13 +22,15 @@ namespace FitghtingClub_WPF
             private set { _gameIsNotOwer = value; }
         }
         
-        public Game(BasePlayer player, BasePlayer aiPlayer)
+        public Game()
         {
             GameIsNotOwer = true;
-            Players = new BasePlayer[_count];
-            Players[0] = player;
-            Players[1] = aiPlayer;
-            _currentPlayer = new Random().Next(0, _count);
+            Players = new List<BasePlayer>
+            {
+                new Player("Player"),
+                new AIPlayer("AIPlayer")
+            };
+            _currentPlayer = new Random().Next(0, Players.Count);
         }
 
         
@@ -48,7 +47,7 @@ namespace FitghtingClub_WPF
         private void Next()
         {
             _currentPlayer++;
-            _currentPlayer = _currentPlayer >= _count ? 0 : _currentPlayer;
+            _currentPlayer = _currentPlayer >= Players.Count ? 0 : _currentPlayer;
         }
     }
 }

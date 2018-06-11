@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,9 +13,24 @@ namespace FitghtingClub_WPF
     {
         private Game _game;
 
-        public ViewModelGame(Game game)
+        ObservableCollection<ViewModelPlayer> _players = new ObservableCollection<ViewModelPlayer>();
+
+        public ObservableCollection<ViewModelPlayer> Players {
+            get =>_players;
+            set
+            {
+                _players = value;
+                OnPropertyChanged("Players");
+            }
+        }
+
+        public ViewModelGame()
         {
-            _game = game;
+            _game = new Game();
+            foreach (BasePlayer player in _game.Players)
+            {
+                Players.Add(new ViewModelPlayer(player));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

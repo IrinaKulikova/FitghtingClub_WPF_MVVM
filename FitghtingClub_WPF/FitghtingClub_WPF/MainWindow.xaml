@@ -7,24 +7,38 @@
         xmlns:local="clr-namespace:FitghtingClub_WPF"
         mc:Ignorable="d"
         Title="Fighting Club" Height="750" Width="620" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <local:ViewModelGame/>
+    </Window.DataContext>
     <Window.Resources>
         <sys:Double x:Key="sizeFont">14</sys:Double>
         <sys:Double x:Key="widthButtons">60</sys:Double>
         <sys:Double x:Key="heightButtons">36</sys:Double>
         <Thickness x:Key="margin">8</Thickness>
         <Thickness x:Key="padding">8</Thickness>
+        <BitmapImage x:Key="head_man" UriSource="./Resources/head_man.png"/>
+        <BitmapImage x:Key="head_man_dead" UriSource="./Resources/head_man_dead.png"/>
+        <BitmapImage x:Key="head_woman" UriSource="./Resources/head_woman.png"/>
+        <BitmapImage x:Key="head_woman_dead" UriSource="./Resources/head_man_dead.png"/>
+        <BitmapImage x:Key="legs_man" UriSource="./Resources/legs_man.png"/>
+        <BitmapImage x:Key="legs_man_dead" UriSource="./Resources/legs_man_dead.png"/>
+        <BitmapImage x:Key="legs_woman" UriSource="./Resources/legs_woman.png"/>
+        <BitmapImage x:Key="legs_woman_dead" UriSource="./Resources/legs_woman_dead.png"/>
+        <BitmapImage x:Key="trunk_man" UriSource="./Resources/trunk_man.png"/>
+        <BitmapImage x:Key="trunk_man_dead" UriSource="./Resources/trunk_man_dead.png"/>
+        <BitmapImage x:Key="trunk_man_win" UriSource="./Resources/trunk_man_win.png"/>
+        <BitmapImage x:Key="trunk_woman" UriSource="./Resources/trunk_woman.png"/>
+        <BitmapImage x:Key="trunk_woman_dead" UriSource="./Resources/trunk_woman_dead.png"/>
+        <BitmapImage x:Key="trunk_woman_win" UriSource="./Resources/trunk_woman_win.png"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" ItemsSource="{Binding players}" SelectedIndex="0">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid></Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <TextBlock Width="50" Text="{Binding}" TextAlignment="Right" />
+        <Image Name="head" Source="{StaticResource head_man}" Stretch="Uniform"/>
+        <Image Name="trunk" Source="{StaticResource trunk_man}" Stretch="Uniform"/>
+        <Image Name="legs"  Source="{StaticResource legs_man}" Stretch="Uniform"/>
     </Grid>
 </Window>
