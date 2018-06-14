@@ -24,6 +24,24 @@ namespace FitghtingClub_WPF
             }
         }
 
+        private CommandBlock _commandBlock;
+        public CommandBlock CommandBlock
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        private CommandHit _commandHit;
+        public CommandHit CommandHit
+        {
+            get
+            {
+                return null;
+            }
+        }
+
         public ViewModelGame()
         {
             _game = Game.GetInstance();

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitghtingClub_WPF", "FitghtingClub_WPF\FitghtingClub_WPF.csproj", "{C3908163-FDFC-40DD-AB0C-73BEAEC9B6E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitghtingClub_WPF", "FitghtingClub_WPF.csproj", "{C3908163-FDFC-40DD-AB0C-73BEAEC9B6E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7303D1F9-35D1-45C6-8515-EC0E853A538B}
+		SolutionGuid = {22CFBE07-FB25-4755-9D4C-9B9817C4A600}
 	EndGlobalSection
 EndGlobal

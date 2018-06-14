@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace FitghtingClub_WPF.Commands
+namespace FitghtingClub_WPF
 {
     //команда удара
     class CommandBlock : ICommand

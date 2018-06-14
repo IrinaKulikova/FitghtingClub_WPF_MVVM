@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:FitghtingClub_WPF"
         mc:Ignorable="d"
-        Title="Fighting Club" Height="750" Width="480" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Fighting Club" Height="780" Width="480" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.DataContext>
         <local:ViewModelGame/>
     </Window.DataContext>
@@ -33,6 +33,7 @@
         <BitmapImage x:Key="trunk_woman_win" UriSource="./Resources/trunk_woman_win.png"/>
         <Style TargetType="Image">
             <Setter Property="Width" Value="{StaticResource widthPlayers}"/>
+            <Setter Property="Margin" Value="0"/>
         </Style>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="{StaticResource sizeFont}"/>
@@ -44,16 +45,15 @@
             <Setter Property="Height" Value="24"/>
             <Setter Property="Width" Value="{StaticResource widthPlayers}"/>
         </Style>
-        <Style TargetType="Button">
-            <Setter Property="Padding" Value="{StaticResource padding}"/>
-            <Setter Property="Margin" Value="{StaticResource margin}"/>
-            <Setter Property="Width" Value="{StaticResource widthButtons}"/>
+        <Style TargetType="Button">            
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Width" Value="{StaticResource widthPlayers}"/>
         </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="170"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid>
@@ -78,9 +78,15 @@
                         <Label Grid.Column="1" Name="healthPlayerNumber" Width="{StaticResource widthPlayers}" Content="{Binding Players[0].Health}" />
                     </Grid>
                     <ProgressBar Grid.Row="1" Name="healthPlayer" Value="{Binding Players[0].Health}"/>
-                    <Image Grid.Row="2" Name="womanHeadImg" Source="{StaticResource head_woman}" Stretch="Fill"/>
-                    <Image Grid.Row="3" Name="womanTrunkImg" Source="{StaticResource trunk_woman}" Stretch="Fill"/>
-                    <Image Grid.Row="4" Name="womanLegsImg" Source="{StaticResource legs_woman}" Stretch="Fill"/>
+                    <Button Command="{Binding CommandBlock}" Grid.Row="2">
+                        <Image  Name="womanHeadImg" Source="{StaticResource head_woman}" Stretch="Fill"/>
+                    </Button>
+                    <Button Command="{Binding CommandBlock}" Grid.Row="3">
+                        <Image Grid.Row="3" Name="womanTrunkImg" Source="{StaticResource trunk_woman}" Stretch="Fill"/>
+                    </Button>
+                    <Button Command="{Binding CommandBlock}" Grid.Row="4">
+                        <Image Grid.Row="4" Name="womanLegsImg" Source="{StaticResource legs_woman}" Stretch="Fill"/>
+                    </Button>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -99,9 +105,15 @@
                         <Label Grid.Column="1" Name="healthAIPlayerNumber" Width="{StaticResource widthPlayers}" Content="{Binding Players[1].Health}" />
                     </Grid>
                     <ProgressBar Grid.Row="1" Name="healthAIPlayer" Value="{Binding Players[1].Health}"/>
-                    <Image Grid.Row="2" Name="manHeadImg" Source="{StaticResource head_man}" Stretch="Fill"/>
-                    <Image Grid.Row="3" Name="manTrunkImg" Source="{StaticResource trunk_man}" Stretch="Fill"/>
-                    <Image Grid.Row="4"  Name="manLegsImg" Source="{StaticResource legs_man}" Stretch="Fill"/>
+                    <Button Command="{Binding CommandHit}" Grid.Row="2">
+                        <Image Grid.Row="2" Name="manHeadImg" Source="{StaticResource head_man}" Stretch="Fill"/>
+                    </Button>
+                    <Button Command="{Binding CommandHit}" Grid.Row="3">
+                        <Image Grid.Row="3" Name="manTrunkImg" Source="{StaticResource trunk_man}" Stretch="Fill"/>
+                    </Button>
+                    <Button Command="{Binding CommandHit}"  Grid.Row="4">
+                        <Image Grid.Row="4"  Name="manLegsImg" Source="{StaticResource legs_man}" Stretch="Fill"/>
+                    </Button>
                 </Grid>
             </Grid>
         </Grid>
@@ -114,7 +126,7 @@
                 </Grid.RowDefinitions>
                 <Label Name="loger" Content="loger"/>
                 <Label Grid.Row="1" Name="time" Content="data time" />
-                <Button Grid.Row="2" Content="New Game" Visibility="Hidden"></Button>
+                <Button FontSize="{StaticResource sizeFont}" Margin="{StaticResource margin}" Padding="{StaticResource margin}" Grid.Row="2" Content="New Game" IsEnabled="False"></Button>
             </Grid>
         </Grid>
     </Grid>
