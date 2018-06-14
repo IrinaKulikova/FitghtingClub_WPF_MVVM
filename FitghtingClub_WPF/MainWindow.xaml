@@ -11,8 +11,8 @@
         <local:ViewModelGame/>
     </Window.DataContext>
     <Window.Resources>
-        <sys:Double x:Key="sizeFont">24</sys:Double>
-        <sys:Double x:Key="widthButtons">60</sys:Double>
+        <sys:Double x:Key="sizeFont">18</sys:Double>
+        <sys:Double x:Key="widthButtons">120</sys:Double>
         <sys:Double x:Key="heightButtons">36</sys:Double>
         <sys:Double x:Key="widthPlayers">200</sys:Double>
         <Thickness x:Key="margin">8</Thickness>
@@ -44,6 +44,11 @@
             <Setter Property="Height" Value="24"/>
             <Setter Property="Width" Value="{StaticResource widthPlayers}"/>
         </Style>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="{StaticResource padding}"/>
+            <Setter Property="Margin" Value="{StaticResource margin}"/>
+            <Setter Property="Width" Value="{StaticResource widthButtons}"/>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -69,8 +74,9 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
+                        <Label Name="namePlayer" Width="{StaticResource widthPlayers}" Content="{Binding Players[0].Name}" />
+                        <Label Grid.Column="1" Name="healthPlayerNumber" Width="{StaticResource widthPlayers}" Content="{Binding Players[0].Health}" />
                     </Grid>
-                    <Label Name="namePlayer" Content="{Binding Players[0].Name}" />
                     <ProgressBar Grid.Row="1" Name="healthPlayer" Value="{Binding Players[0].Health}"/>
                     <Image Grid.Row="2" Name="womanHeadImg" Source="{StaticResource head_woman}" Stretch="Fill"/>
                     <Image Grid.Row="3" Name="womanTrunkImg" Source="{StaticResource trunk_woman}" Stretch="Fill"/>
@@ -84,11 +90,18 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Label Name="nameAIPlayer" Content="{Binding Players[1].Name}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Name="nameAIPlayer" Width="{StaticResource widthPlayers}" Content="{Binding Players[1].Name}" />
+                        <Label Grid.Column="1" Name="healthAIPlayerNumber" Width="{StaticResource widthPlayers}" Content="{Binding Players[1].Health}" />
+                    </Grid>
                     <ProgressBar Grid.Row="1" Name="healthAIPlayer" Value="{Binding Players[1].Health}"/>
                     <Image Grid.Row="2" Name="manHeadImg" Source="{StaticResource head_man}" Stretch="Fill"/>
                     <Image Grid.Row="3" Name="manTrunkImg" Source="{StaticResource trunk_man}" Stretch="Fill"/>
-                    <Image Grid.Row="4" Name="manLegsImg" Source="{StaticResource legs_man}" Stretch="Fill"/>
+                    <Image Grid.Row="4"  Name="manLegsImg" Source="{StaticResource legs_man}" Stretch="Fill"/>
                 </Grid>
             </Grid>
         </Grid>
@@ -97,8 +110,11 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label Name="loder" Content=""/>
+                <Label Name="loger" Content="loger"/>
+                <Label Grid.Row="1" Name="time" Content="data time" />
+                <Button Grid.Row="2" Content="New Game" Visibility="Hidden"></Button>
             </Grid>
         </Grid>
     </Grid>

@@ -9,8 +9,13 @@ using System.Windows.Forms;
 namespace FitghtingClub_WPF
 {
     //синглетон
-    public sealed class  Game : INotifyPropertyChanged
+    public sealed class Game : INotifyPropertyChanged
     {
+
+        public event EventHandler<EventArgsWoundRouted> WoundEvent;
+        public event EventHandler<EventArgsBlockRouted> BlockEvent;
+        public event EventHandler<EventArgsDeathRouted> DeathEvent;
+
         public int Round { get; private set; }
         public List<BasePlayer> Players { get; private set; }
         private bool _gameIsNotOwer;
@@ -45,9 +50,39 @@ namespace FitghtingClub_WPF
                 new AIPlayer("AIPlayer")
             };
             _currentPlayer = new Random().Next(0, Players.Count);
+
+            foreach (BasePlayer player in Players)
+            {
+                player.BlockEvent += Game_BlockEvent;
+                player.DeathEvent += Game_DeathEvent;
+                player.WoundEvent += Game_WoundEvent;
+            }
         }
 
-        
+        private void Game_WoundEvent(object sender, EventArgsWound e)
+        {
+            if (sender is BasePlayer)
+            {
+                WoundEvent?.Invoke(this, new EventArgsWoundRouted(sender as BasePlayer, e.Part, e.Wound));
+            }
+        }
+
+        private void Game_DeathEvent(object sender, EventArgsDeath e)
+        {
+            if (sender is BasePlayer)
+            {
+                DeathEvent?.Invoke(this, new EventArgsDeathRouted(sender as BasePlayer));
+            }
+        }
+
+        private void Game_BlockEvent(object sender, EventArgsBlock e)
+        {
+            if (sender is BasePlayer)
+            {
+                BlockEvent?.Invoke(this, new EventArgsBlockRouted(sender as BasePlayer, e.Part));
+            }
+        }
+
         public void Play()
         {
             while (_gameIsNotOwer)
@@ -57,7 +92,7 @@ namespace FitghtingClub_WPF
                 Players[_currentPlayer].Step();
             }
         }
-        
+
         private void Next()
         {
             _currentPlayer++;

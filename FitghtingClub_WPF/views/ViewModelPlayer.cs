@@ -27,6 +27,16 @@ namespace FitghtingClub_WPF
             }
         }
 
+        public string Name
+        {
+            get => _player.Name;
+            set
+            {
+                _player.Name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+
         public BodyPart SetBlock
         {
             get => _player.Blocked;

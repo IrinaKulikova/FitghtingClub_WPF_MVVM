@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace FitghtingClub_WPF
 {
-    public class EventArgsWound : EventArgs
+    public class EventArgsBlockRouted : EventArgs
     {
-        public int Wound { get; set; }
         public BodyPart Part { get; set; }
-
-        public EventArgsWound(BodyPart part,int wound)
+        public BasePlayer Player { get; set; }
+        public EventArgsBlockRouted(BasePlayer player, BodyPart part)
         {
+            Player = player;
             Part = part;
-            Wound = wound;            
         }
     }
 }

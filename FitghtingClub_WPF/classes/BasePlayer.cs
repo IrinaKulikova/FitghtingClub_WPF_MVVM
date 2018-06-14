@@ -12,7 +12,7 @@ namespace FitghtingClub_WPF
     {
         //события установки, получения урона и смерти
         public event EventHandler<EventArgsWound> WoundEvent;
-        public event EventHandler<EventArgsBlock> BlockgEvent;
+        public event EventHandler<EventArgsBlock> BlockEvent;
         public event EventHandler<EventArgsDeath> DeathEvent;
 
         private bool _alive;
@@ -36,7 +36,7 @@ namespace FitghtingClub_WPF
         public string Name
         {
             get => _name;
-            private set
+            set
             {
                 _name = value;
                 OnPropertyChanged("Name");
