@@ -1,2 +1,2 @@
-# FitghtingClub_2
+# Fitghting Club MVVM WPF
 game
