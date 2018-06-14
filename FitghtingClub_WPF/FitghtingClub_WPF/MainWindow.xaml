@@ -36,9 +36,8 @@
             <RowDefinition/>
             <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
-        <TextBlock Width="50" Text="{Binding}" TextAlignment="Right" />
         <Image Name="head" Source="{StaticResource head_man}" Stretch="Uniform"/>
         <Image Name="trunk" Source="{StaticResource trunk_man}" Stretch="Uniform"/>
-        <Image Name="legs"  Source="{StaticResource legs_man}" Stretch="Uniform"/>
+        <Image Name="legs"  Source="{StaticResource legs_man}" Stretch="Uniform"/>        
     </Grid>
 </Window>
