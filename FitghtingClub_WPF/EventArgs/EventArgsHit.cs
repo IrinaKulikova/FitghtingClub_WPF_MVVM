@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace FitghtingClub_WPF
 {
-    public class EventArgsWound : EventArgs
+    public class EventArgsHit : EventArgs
     {
-        public int Wound { get; set; }
+        public int Power { get; set; }
         public BodyPart Part { get; set; }
 
-        public EventArgsWound(BodyPart part,int wound)
+        public EventArgsHit(BodyPart part, int power)
         {
             Part = part;
-            Wound = wound;            
+            Power = power;
         }
     }
 }

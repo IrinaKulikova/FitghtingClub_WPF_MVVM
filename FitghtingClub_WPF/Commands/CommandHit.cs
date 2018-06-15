@@ -17,7 +17,7 @@ namespace FitghtingClub_WPF
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            return Game.GetInstance().Players[0].HaveToSetHit;
         }
 
         public void Execute(object parameter)

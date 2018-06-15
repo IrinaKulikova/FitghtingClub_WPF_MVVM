@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,103 +12,137 @@ namespace FitghtingClub_WPF
     //синглетон
     public sealed class Game : INotifyPropertyChanged
     {
-        public event EventHandler<EventArgsWoundRouted> WoundEvent;
         public event EventHandler<EventArgsBlockRouted> BlockEvent;
         public event EventHandler<EventArgsDeathRouted> DeathEvent;
+        public event EventHandler<EventArgsWoundRouted> WoundEventRouted;
         public event EventHandler NewGameEvent;
 
         public int Round { get; set; }
         public List<BasePlayer> Players { get; private set; }
-        private bool _gameIsNotOwer;
+        private bool _isNotOver;
         int _currentPlayer;
+        public int CurrentPlayer
+        {
+            get => _currentPlayer;
+            set
+            {
+                _currentPlayer = value;
+                OnPropertyChanged("Current");
+            }
+        }
+
+        private void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public bool GameIsNotOwer
+        public bool IsNotOver
         {
             get => Players[0].HealthPoints > 0 && Players[1].HealthPoints > 0;
-            private set { _gameIsNotOwer = value; }
+            private set => _isNotOver = value;
         }
 
         private static Game _game;
 
-        //получение ссылки на игру
         public static Game GetInstance()
         {
-            if (_game == null)
-            {
-                _game = new Game();
-            }
+            _game = _game ?? new Game();
             return _game;
         }
 
         public void NewGame()
         {
-            Round = 0;
-            _currentPlayer = 0;
+            _game = new Game();
             NewGameEvent?.Invoke(this, new EventArgs());
         }
 
         Game()
         {
-            GameIsNotOwer = true;
+            _game = this;
+            _isNotOver = true;
+
             Players = new List<BasePlayer>
             {
                 new Player("Player"),
                 new AIPlayer("AIPlayer")
             };
-            _currentPlayer = new Random().Next(0, Players.Count);
+
+            _currentPlayer = 1;
+            Round = 1;
 
             foreach (BasePlayer player in Players)
             {
                 player.BlockEvent += Game_BlockEvent;
                 player.DeathEvent += Game_DeathEvent;
-                player.WoundEvent += Game_WoundEvent;
+                player.HitEvent += Game_HitEvent;
+                _game.NewGameEvent += player.NewGame;
+                _game.WoundEventRouted += player.GetHit;
             }
         }
 
-        private void Game_WoundEvent(object sender, EventArgsWound e)
+
+        private void Game_HitEvent(object sender, EventArgsHit e)
         {
             if (sender is BasePlayer)
             {
-                WoundEvent?.Invoke(this, new EventArgsWoundRouted(sender as BasePlayer, e.Part, e.Wound));
+                BasePlayer player = sender is AIPlayer ? Players[0] : Players[1];
+                player.GetHit(sender, new EventArgsWoundRouted(e.Part, e.Power));
+                (sender as BasePlayer).HaveToSetHit = false;
+                NextPlayer();
+                Players[CurrentPlayer].HaveToSetBlock = true;
+                if (CurrentPlayer == 1)
+                {
+                    Players[_currentPlayer].MakeBlock(null, null);
+                }
             }
         }
+
 
         private void Game_DeathEvent(object sender, EventArgsDeath e)
         {
             if (sender is BasePlayer)
             {
                 DeathEvent?.Invoke(this, new EventArgsDeathRouted(sender as BasePlayer));
+                foreach (BasePlayer player in Players)
+                {
+                    player.HaveToSetBlock = false;
+                    player.HaveToSetHit = false;
+                }
             }
         }
+
 
         private void Game_BlockEvent(object sender, EventArgsBlock e)
         {
             if (sender is BasePlayer)
             {
-                BlockEvent?.Invoke(this, new EventArgsBlockRouted(sender as BasePlayer, e.Part));
-            }
-        }
-
-        public void Play()
-        {
-            while (_gameIsNotOwer)
-            {
-                Players[_currentPlayer].Block();
-                Next();
-                Players[_currentPlayer].Step();
-                if (_currentPlayer == 0)
+                (sender as BasePlayer).HaveToSetBlock = false;
+                NextPlayer();
+                Players[CurrentPlayer].HaveToSetHit = true;
+                if (CurrentPlayer == 1)
                 {
-                    Round++;
+                    Players[_currentPlayer].MakeHit(null, null);
                 }
             }
         }
 
-        private void Next()
+
+        public void Play()
+        {
+            Players[_currentPlayer].HaveToSetBlock = true;
+            if (CurrentPlayer == 1)
+            {
+                Players[_currentPlayer].MakeBlock(null, null);
+            }
+        }
+
+
+        private void NextPlayer()
         {
             _currentPlayer++;
-            _currentPlayer = _currentPlayer >= Players.Count ? 0 : _currentPlayer;
+            CurrentPlayer = _currentPlayer >= Players.Count ? 0 : _currentPlayer;
         }
     }
 }

@@ -26,33 +26,45 @@ namespace FitghtingClub_WPF
             }
         }
 
+        public int CurrentPlayer
+        {
+            get => _game.CurrentPlayer;
+        }
+
         public int Round
         {
             get => _game.Round;
-            set
+        }
+
+
+        private ICommand _commandBlock;
+        public ICommand CommandBlock
+        {
+            get
             {
-                _game.Round = value;
-                OnPropertyChanged("Round");
+                _commandBlock = _commandBlock ?? new CommandBlock();
+                return _commandBlock;
             }
         }
 
-
-        private CommandBlock _commandBlock;
-        public CommandBlock CommandBlock
+        private ICommand _commandNewGame;
+        public ICommand CommandNewGame
         {
-            get => new CommandBlock();
+            get
+            {
+                _commandNewGame = _commandNewGame ?? new CommandNewGame();
+                return _commandNewGame;
+            }
         }
 
-        private CommandNewGame _commandNewGame;
-        public CommandNewGame CommandNewGame
+        private ICommand _commandHit;
+        public ICommand CommandHit
         {
-            get => new CommandNewGame();
-        }
-
-        private CommandHit _commandHit;
-        public CommandHit CommandHit
-        {
-            get => new CommandHit();
+            get
+            {
+                _commandHit = _commandHit ?? new CommandHit();
+                return _commandHit;
+            }
         }
 
         public ViewModelGame()

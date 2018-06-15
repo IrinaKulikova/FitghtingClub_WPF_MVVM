@@ -63,7 +63,8 @@
     <Compile Include="EventArgs\EventArgsDeath.cs" />
     <Compile Include="EventArgs\EventArgsBlock.cs" />
     <Compile Include="EventArgs\EventArgsWoundRouted.cs" />
-    <Compile Include="EventArgs\EventArgsWound.cs" />
+    <Compile Include="EventArgs\EventArgsHitRouted.cs" />
+    <Compile Include="EventArgs\EventArgsHit.cs" />
     <Compile Include="Commands\CommandBlock.cs" />
     <Compile Include="Commands\CommandHit.cs" />
     <Compile Include="Views\ViewModelGame.cs" />

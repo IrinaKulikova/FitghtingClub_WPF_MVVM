@@ -11,27 +11,47 @@ namespace FitghtingClub_WPF
     public abstract class BasePlayer : INotifyPropertyChanged
     {
         //события установки, получения урона и смерти
-        public event EventHandler<EventArgsWound> WoundEvent;
+        public event EventHandler<EventArgsHit> HitEvent;
         public event EventHandler<EventArgsBlock> BlockEvent;
         public event EventHandler<EventArgsDeath> DeathEvent;
 
-        private bool _alive;
         private string _name;
         private int _healthPoints;
         private BodyPart _blockPart;
+        private bool _haveToSetBlock;
+        private bool _haveToSetHit;
         public const int MAX_POINTS = 100;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public bool Alive
+        public bool HaveToSetBlock
         {
-            get => _alive;
-            private set
+            get => _haveToSetBlock;
+            set
             {
-                _alive = value;
-                OnPropertyChanged("Alive");
+                _haveToSetBlock = value;
+                OnPropertyChanged("HaveToSetBlock");
             }
         }
 
+        public bool HaveToSetHit
+        {
+            get => _haveToSetHit;
+            set
+            {
+                _haveToSetHit = value;
+                OnPropertyChanged("HaveToSetHit");
+            }
+        }
+
+        public void Hit(Object sender, EventArgsHit e)
+        {
+            HitEvent?.Invoke(sender, e);
+        }
+
+        public void Block(Object sender, EventArgsBlock e)
+        {
+            BlockEvent?.Invoke(sender, e);
+        }
 
         public string Name
         {
@@ -42,8 +62,6 @@ namespace FitghtingClub_WPF
                 OnPropertyChanged("Name");
             }
         }
-
-        private bool ToStep { get; set; } = false;
 
         public int HealthPoints
         {
@@ -65,36 +83,30 @@ namespace FitghtingClub_WPF
             }
         }
 
-
         public BasePlayer(string name)
         {
             Name = name;
             HealthPoints = MAX_POINTS;
-            _alive = true;
         }
 
-        public void GetHit(BodyPart part, int power)
+        public void GetHit(Object sender, EventArgsWoundRouted e)
         {
-            if (part != Blocked)
+            if (e.Part != Blocked)
             {
-                HealthPoints -= power;
+                HealthPoints -= e.Power;
 
                 if (HealthPoints <= 0)
                 {
-                    _alive = false;
+                    DeathEvent?.Invoke(this, new EventArgsDeath());
                 }
             }
         }
 
-        internal void NewGame()
+        public void NewGame(object sender, EventArgs e)
         {
             HealthPoints = MAX_POINTS;
-        }
-
-        public void Step()
-        {
-            ToStep = false;
-            MakeStep();
+            HaveToSetBlock = false;
+            HaveToSetHit = false;
         }
 
         private void OnPropertyChanged([CallerMemberName]string prop = "")
@@ -102,12 +114,7 @@ namespace FitghtingClub_WPF
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
-        public void Block()
-        {
-            MakeBlock(Blocked);
-        }
-
-        public abstract void MakeBlock(BodyPart part);
-        public abstract void MakeStep();
+        public abstract void MakeBlock(Object sender, EventArgsBlock e);
+        public abstract void MakeHit(Object sender, EventArgsHit e);
     }
 }

@@ -71,21 +71,46 @@
                     </Grid.RowDefinitions>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Name="namePlayer" Width="{StaticResource widthPlayers}" Content="{Binding Players[0].Name}" />
-                        <Label Grid.Column="1" Name="healthPlayerNumber" Width="{StaticResource widthPlayers}" Content="{Binding Players[0].Health}" />
+                        <Label 
+                            Name="namePlayer" 
+                            Content="{Binding Players[0].Name}" />
+                        <Label 
+                            Grid.Column="1" 
+                            Name="healthPlayerNumber" 
+                            Content="{Binding Players[0].Health}" />
                     </Grid>
-                    <ProgressBar Grid.Row="1" Name="healthPlayer" Value="{Binding Players[0].Health}"/>
-                    <Button Command="{Binding CommandBlock}" Grid.Row="2">
-                        <Image  Name="womanHeadImg" Source="{StaticResource head_woman}" Stretch="Fill"/>
+                    <ProgressBar 
+                        Grid.Row="1"
+                        Name="healthPlayer" 
+                        Value="{Binding Players[0].Health}"/>
+                    <Button 
+                        Command="{Binding CommandBlock}" 
+                        Grid.Row="2">
+                        <Image  
+                            Name="womanHeadImg" 
+                            Source="{StaticResource head_woman}" 
+                            Stretch="Fill"/>
                     </Button>
-                    <Button Command="{Binding CommandBlock}" Grid.Row="3">
-                        <Image Grid.Row="3" Name="womanTrunkImg" Source="{StaticResource trunk_woman}" Stretch="Fill"/>
+                    <Button 
+                        Command="{Binding CommandBlock}" 
+                        Grid.Row="3">
+                        <Image 
+                            Grid.Row="3" 
+                            Name="womanTrunkImg" 
+                            Source="{StaticResource trunk_woman}" 
+                            Stretch="Fill"/>
                     </Button>
-                    <Button Command="{Binding CommandBlock}" Grid.Row="4">
-                        <Image Grid.Row="4" Name="womanLegsImg" Source="{StaticResource legs_woman}" Stretch="Fill"/>
+                    <Button 
+                        Command="{Binding CommandBlock}" 
+                        Grid.Row="4">
+                        <Image 
+                            Grid.Row="4" 
+                            Name="womanLegsImg" 
+                            Source="{StaticResource legs_woman}" 
+                            Stretch="Fill"/>
                     </Button>
                 </Grid>
                 <Grid Grid.Column="1">
@@ -98,21 +123,47 @@
                     </Grid.RowDefinitions>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Name="nameAIPlayer" Width="{StaticResource widthPlayers}" Content="{Binding Players[1].Name}" />
-                        <Label Grid.Column="1" Name="healthAIPlayerNumber" Width="{StaticResource widthPlayers}" Content="{Binding Players[1].Health}" />
+                        <Label 
+                            Name="nameAIPlayer" 
+                            Content="{Binding Players[1].Name}" />
+                        <Label 
+                            Grid.Column="1" 
+                            Name="healthAIPlayerNumber" 
+                            Content="{Binding Players[1].Health}" />
                     </Grid>
-                    <ProgressBar Grid.Row="1" Name="healthAIPlayer" Value="{Binding Players[1].Health}"/>
-                    <Button Command="{Binding CommandHit}" Grid.Row="2">
-                        <Image Grid.Row="2" Name="manHeadImg" Source="{StaticResource head_man}" Stretch="Fill"/>
+                    <ProgressBar 
+                        Grid.Row="1" 
+                        Name="healthAIPlayer" 
+                        Value="{Binding Players[1].Health}"/>
+                    <Button 
+                        Command="{Binding CommandHit}" 
+                        Grid.Row="2">
+                        <Image 
+                            Grid.Row="2" 
+                            Name="manHeadImg" 
+                            Source="{StaticResource head_man}" 
+                            Stretch="Fill"/>
                     </Button>
-                    <Button Command="{Binding CommandHit}" Grid.Row="3">
-                        <Image Grid.Row="3" Name="manTrunkImg" Source="{StaticResource trunk_man}" Stretch="Fill"/>
+                    <Button 
+                        Command="{Binding CommandHit}" 
+                        Grid.Row="3">
+                        <Image 
+                            Grid.Row="3" 
+                            Name="manTrunkImg" 
+                            Source="{StaticResource trunk_man}" 
+                            Stretch="Fill"/>
                     </Button>
-                    <Button Command="{Binding CommandHit}"  Grid.Row="4">
-                        <Image Grid.Row="4"  Name="manLegsImg" Source="{StaticResource legs_man}" Stretch="Fill"/>
+                    <Button 
+                        Command="{Binding CommandHit}"  
+                        Grid.Row="4">
+                        <Image 
+                            Grid.Row="4"  
+                            Name="manLegsImg" 
+                            Source="{StaticResource legs_man}" 
+                            Stretch="Fill"/>
                     </Button>
                 </Grid>
             </Grid>
@@ -125,16 +176,25 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label Name="loger" Content="loger"/>
-                <Label Grid.Row="1" Name="time" Content="data time" />
-                <Label Grid.Row="2" Name="round" Content="{Binding Round}" />
-                <Button Name="buttonNewGame"
-                        Command="{Binding CommandNewGame}" 
-                        FontSize="{StaticResource sizeFont}" 
-                        Margin="{StaticResource margin}" 
-                        Padding="{StaticResource margin}" 
-                        Grid.Row="3"
-                        Content="New Game">
+                <Label
+                    Name="loger"
+                    Content="{Binding CurrentPlayer}"/>
+                <Label 
+                    Grid.Row="1"
+                    Name="time" 
+                    Content="data time" />
+                <Label 
+                    Grid.Row="2" 
+                    Name="round" 
+                    Content="{Binding Round}" />
+                <Button 
+                    Name="buttonNewGame"
+                    Command="{Binding CommandNewGame}" 
+                    FontSize="{StaticResource sizeFont}" 
+                    Margin="{StaticResource margin}" 
+                    Padding="{StaticResource margin}" 
+                    Grid.Row="3"
+                    Content="New Game">
                 </Button>
             </Grid>
         </Grid>
