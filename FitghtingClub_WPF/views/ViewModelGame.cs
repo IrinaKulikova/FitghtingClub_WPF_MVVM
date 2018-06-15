@@ -6,12 +6,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace FitghtingClub_WPF
 {
     class ViewModelGame : INotifyPropertyChanged
     {
         private Game _game;
+
         ObservableCollection<ViewModelPlayer> _players = new ObservableCollection<ViewModelPlayer>();
 
         public ObservableCollection<ViewModelPlayer> Players
@@ -24,22 +26,33 @@ namespace FitghtingClub_WPF
             }
         }
 
+        public int Round
+        {
+            get => _game.Round;
+            set
+            {
+                _game.Round = value;
+                OnPropertyChanged("Round");
+            }
+        }
+
+
         private CommandBlock _commandBlock;
         public CommandBlock CommandBlock
         {
-            get
-            {
-                return null;
-            }
+            get => new CommandBlock();
+        }
+
+        private CommandNewGame _commandNewGame;
+        public CommandNewGame CommandNewGame
+        {
+            get => new CommandNewGame();
         }
 
         private CommandHit _commandHit;
         public CommandHit CommandHit
         {
-            get
-            {
-                return null;
-            }
+            get => new CommandHit();
         }
 
         public ViewModelGame()

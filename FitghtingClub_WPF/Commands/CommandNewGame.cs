@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace FitghtingClub_WPF
 {
-    class CommandBlock : ICommand
+    class CommandNewGame : ICommand
     {
         public event EventHandler CanExecuteChanged
         {
@@ -15,14 +15,19 @@ namespace FitghtingClub_WPF
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        private bool _canExecute = true;
+
         public bool CanExecute(object parameter)
         {
-            return true;
+            return _canExecute;
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            Game game = Game.GetInstance();
+            game.NewGame();
+            game.Play();
+            _canExecute = false;
         }
     }
 }

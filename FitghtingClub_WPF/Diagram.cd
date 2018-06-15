@@ -4,22 +4,22 @@
     <Position X="4" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>classes\AIPlayer.cs</FileName>
+      <FileName>Models\AIPlayer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FitghtingClub_WPF.BasePlayer">
     <Position X="2.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEIAAAwQAAAAAAIIFgEAQAhAAgAAQAIAwAAAACCAA=</HashCode>
-      <FileName>classes\BasePlayer.cs</FileName>
+      <FileName>Models\BasePlayer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="FitghtingClub_WPF.Game">
     <Position X="6.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ggAAAAAAgAAEAAAAAQEEEAAAhAAgAAAAgAgAAAoAAAQ=</HashCode>
-      <FileName>classes\Game.cs</FileName>
+      <HashCode>ggAAAAAAgAAEAAAAAQEEEAAAhAAgAAAAhAgAAAoAAAQ=</HashCode>
+      <FileName>Models\Game.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -27,7 +27,7 @@
     <Position X="1" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>classes\Player.cs</FileName>
+      <FileName>Models\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FitghtingClub_WPF.CommandBlock">
@@ -89,10 +89,10 @@
     </TypeIdentifier>
   </Class>
   <Class Name="FitghtingClub_WPF.ViewModelGame">
-    <Position X="6.5" Y="6" Width="1.5" />
+    <Position X="6.5" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAEAAAAIAIAAAAAgBAgAAAAAAAAAAAARAQ=</HashCode>
-      <FileName>views\ViewModelGame.cs</FileName>
+      <HashCode>AAAAAAAAAAAEAAAAIAIAAAAAgBAgAAAAAAAAAAIARAQ=</HashCode>
+      <FileName>Views\ViewModelGame.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -100,7 +100,7 @@
     <Position X="2.5" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAIAAACAQAgAAAAAAAAAAAAEAAAAA=</HashCode>
-      <FileName>views\ViewModelPlayer.cs</FileName>
+      <FileName>Views\ViewModelPlayer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -116,14 +116,14 @@
     <Position X="12.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACIAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
-      <FileName>enum\BodyPart.cs</FileName>
+      <FileName>Enums\BodyPart.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="FitghtingClub_WPF.HitPower">
     <Position X="14.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>enum\HitPower.cs</FileName>
+      <FileName>Enums\HitPower.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

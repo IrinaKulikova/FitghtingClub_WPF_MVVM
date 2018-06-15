@@ -11,12 +11,12 @@ namespace FitghtingClub_WPF
     //синглетон
     public sealed class Game : INotifyPropertyChanged
     {
-
         public event EventHandler<EventArgsWoundRouted> WoundEvent;
         public event EventHandler<EventArgsBlockRouted> BlockEvent;
         public event EventHandler<EventArgsDeathRouted> DeathEvent;
+        public event EventHandler NewGameEvent;
 
-        public int Round { get; private set; }
+        public int Round { get; set; }
         public List<BasePlayer> Players { get; private set; }
         private bool _gameIsNotOwer;
         int _currentPlayer;
@@ -39,6 +39,13 @@ namespace FitghtingClub_WPF
                 _game = new Game();
             }
             return _game;
+        }
+
+        public void NewGame()
+        {
+            Round = 0;
+            _currentPlayer = 0;
+            NewGameEvent?.Invoke(this, new EventArgs());
         }
 
         Game()
@@ -90,6 +97,10 @@ namespace FitghtingClub_WPF
                 Players[_currentPlayer].Block();
                 Next();
                 Players[_currentPlayer].Step();
+                if (_currentPlayer == 0)
+                {
+                    Round++;
+                }
             }
         }
 

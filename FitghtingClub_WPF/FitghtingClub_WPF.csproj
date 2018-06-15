@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CommandNewGame.cs" />
     <Compile Include="EventArgs\EventArgsBlockRouted.cs" />
     <Compile Include="EventArgs\EventArgsDeathRouted.cs" />
     <Compile Include="EventArgs\EventArgsDeath.cs" />
@@ -65,8 +66,8 @@
     <Compile Include="EventArgs\EventArgsWound.cs" />
     <Compile Include="Commands\CommandBlock.cs" />
     <Compile Include="Commands\CommandHit.cs" />
-    <Compile Include="views\ViewModelGame.cs" />
-    <Compile Include="views\ViewModelPlayer.cs" />
+    <Compile Include="Views\ViewModelGame.cs" />
+    <Compile Include="Views\ViewModelPlayer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -75,12 +76,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="classes\AIPlayer.cs" />
-    <Compile Include="classes\BasePlayer.cs" />
-    <Compile Include="classes\Game.cs" />
-    <Compile Include="classes\Player.cs" />
-    <Compile Include="enum\BodyPart.cs" />
-    <Compile Include="enum\HitPower.cs" />
+    <Compile Include="Models\AIPlayer.cs" />
+    <Compile Include="Models\BasePlayer.cs" />
+    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Enums\BodyPart.cs" />
+    <Compile Include="Enums\HitPower.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

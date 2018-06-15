@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:FitghtingClub_WPF"
         mc:Ignorable="d"
-        Title="Fighting Club" Height="780" Width="480" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Fighting Club" Height="830" Width="480" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.DataContext>
         <local:ViewModelGame/>
     </Window.DataContext>
@@ -45,7 +45,7 @@
             <Setter Property="Height" Value="24"/>
             <Setter Property="Width" Value="{StaticResource widthPlayers}"/>
         </Style>
-        <Style TargetType="Button">            
+        <Style TargetType="Button">
             <Setter Property="Padding" Value="0"/>
             <Setter Property="Width" Value="{StaticResource widthPlayers}"/>
         </Style>
@@ -53,7 +53,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="170"/>
+            <RowDefinition Height="225"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid>
@@ -123,10 +123,19 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label Name="loger" Content="loger"/>
                 <Label Grid.Row="1" Name="time" Content="data time" />
-                <Button FontSize="{StaticResource sizeFont}" Margin="{StaticResource margin}" Padding="{StaticResource margin}" Grid.Row="2" Content="New Game" IsEnabled="False"></Button>
+                <Label Grid.Row="2" Name="round" Content="{Binding Round}" />
+                <Button Name="buttonNewGame"
+                        Command="{Binding CommandNewGame}" 
+                        FontSize="{StaticResource sizeFont}" 
+                        Margin="{StaticResource margin}" 
+                        Padding="{StaticResource margin}" 
+                        Grid.Row="3"
+                        Content="New Game">
+                </Button>
             </Grid>
         </Grid>
     </Grid>
