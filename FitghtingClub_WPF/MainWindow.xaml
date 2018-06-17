@@ -80,14 +80,14 @@
                         <Label 
                             Grid.Column="1" 
                             Name="healthPlayerNumber" 
-                            Content="{Binding Players[0].Health}" />
+                            Content="{Binding Players[0].HealthPoints}" />
                     </Grid>
                     <ProgressBar 
                         Grid.Row="1"
                         Name="healthPlayer" 
-                        Value="{Binding Players[0].Health}"/>
+                        Value="{Binding Players[0].HealthPoints}"/>
                     <Button 
-                        Command="{Binding CommandBlock}" 
+                        Command="{Binding CommandBlockHead}" 
                         Grid.Row="2">
                         <Image  
                             Name="womanHeadImg" 
@@ -95,7 +95,7 @@
                             Stretch="Fill"/>
                     </Button>
                     <Button 
-                        Command="{Binding CommandBlock}" 
+                        Command="{Binding CommandBlockTrunk}" 
                         Grid.Row="3">
                         <Image 
                             Grid.Row="3" 
@@ -104,7 +104,7 @@
                             Stretch="Fill"/>
                     </Button>
                     <Button 
-                        Command="{Binding CommandBlock}" 
+                        Command="{Binding CommandBlockLegs}" 
                         Grid.Row="4">
                         <Image 
                             Grid.Row="4" 
@@ -132,14 +132,14 @@
                         <Label 
                             Grid.Column="1" 
                             Name="healthAIPlayerNumber" 
-                            Content="{Binding Players[1].Health}" />
+                            Content="{Binding Players[1].HealthPoints}" />
                     </Grid>
                     <ProgressBar 
                         Grid.Row="1" 
-                        Name="healthAIPlayer" 
-                        Value="{Binding Players[1].Health}"/>
+                        Name="healthAIPlayer"
+                        Value="{Binding Players[1].HealthPoints}"/>
                     <Button 
-                        Command="{Binding CommandHit}" 
+                        Command="{Binding CommandHitHead}" 
                         Grid.Row="2">
                         <Image 
                             Grid.Row="2" 
@@ -148,7 +148,7 @@
                             Stretch="Fill"/>
                     </Button>
                     <Button 
-                        Command="{Binding CommandHit}" 
+                        Command="{Binding CommandHitTrunk}" 
                         Grid.Row="3">
                         <Image 
                             Grid.Row="3" 
@@ -157,7 +157,7 @@
                             Stretch="Fill"/>
                     </Button>
                     <Button 
-                        Command="{Binding CommandHit}"  
+                        Command="{Binding CommandHitLegs}"  
                         Grid.Row="4">
                         <Image 
                             Grid.Row="4"  

@@ -15,11 +15,9 @@ namespace FitghtingClub_WPF
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        private bool _canExecute = true;
-
         public bool CanExecute(object parameter)
         {
-            return _canExecute;
+            return !Game.GetInstance().IsNotOver;
         }
 
         public void Execute(object parameter)
@@ -27,7 +25,6 @@ namespace FitghtingClub_WPF
             Game game = Game.GetInstance();
             game.NewGame();
             game.Play();
-            _canExecute = false;
         }
     }
 }

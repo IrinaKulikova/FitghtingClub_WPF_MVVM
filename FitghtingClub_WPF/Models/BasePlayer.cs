@@ -10,7 +10,6 @@ namespace FitghtingClub_WPF
 {
     public abstract class BasePlayer : INotifyPropertyChanged
     {
-        //события установки, получения урона и смерти
         public event EventHandler<EventArgsHit> HitEvent;
         public event EventHandler<EventArgsBlock> BlockEvent;
         public event EventHandler<EventArgsDeath> DeathEvent;
@@ -91,13 +90,16 @@ namespace FitghtingClub_WPF
 
         public void GetHit(Object sender, EventArgsWoundRouted e)
         {
-            if (e.Part != Blocked)
+            if (sender != this)
             {
-                HealthPoints -= e.Power;
-
-                if (HealthPoints <= 0)
+                if (e.Part != Blocked)
                 {
-                    DeathEvent?.Invoke(this, new EventArgsDeath());
+                    HealthPoints -= e.Power;
+
+                    if (HealthPoints <= 0)
+                    {
+                        DeathEvent?.Invoke(this, new EventArgsDeath());
+                    }
                 }
             }
         }
@@ -114,7 +116,7 @@ namespace FitghtingClub_WPF
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
-        public abstract void MakeBlock(Object sender, EventArgsBlock e);
-        public abstract void MakeHit(Object sender, EventArgsHit e);
+        public abstract void MakeBlock(BodyPart part);
+        public abstract void MakeHit(BodyPart part);
     }
 }

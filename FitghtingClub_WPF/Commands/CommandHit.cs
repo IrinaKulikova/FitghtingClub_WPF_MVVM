@@ -9,10 +9,17 @@ namespace FitghtingClub_WPF
 {
     class CommandHit : ICommand
     {
+        BodyPart part;
+
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public CommandHit(BodyPart part)
+        {
+            this.part = part;
         }
 
         public bool CanExecute(object parameter)
@@ -22,7 +29,8 @@ namespace FitghtingClub_WPF
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            Game game = Game.GetInstance();
+            game.Players[0].MakeHit(BodyPart.Trunk);
         }
     }
 }

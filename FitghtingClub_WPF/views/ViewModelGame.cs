@@ -16,15 +16,7 @@ namespace FitghtingClub_WPF
 
         ObservableCollection<ViewModelPlayer> _players = new ObservableCollection<ViewModelPlayer>();
 
-        public ObservableCollection<ViewModelPlayer> Players
-        {
-            get => _players;
-            set
-            {
-                _players = value;
-                OnPropertyChanged("Players");
-            }
-        }
+        public ObservableCollection<ViewModelPlayer> Players { get; set;}
 
         public int CurrentPlayer
         {
@@ -36,14 +28,33 @@ namespace FitghtingClub_WPF
             get => _game.Round;
         }
 
-
-        private ICommand _commandBlock;
-        public ICommand CommandBlock
+        private ICommand _commandBlockHead;
+        public ICommand CommandBlockHead
         {
             get
             {
-                _commandBlock = _commandBlock ?? new CommandBlock();
-                return _commandBlock;
+                _commandBlockHead = _commandBlockHead ?? new CommandBlock(BodyPart.Head);
+                return _commandBlockHead;
+            }
+        }
+
+        private ICommand _commandBlockTrunk;
+        public ICommand CommandBlockTrunk
+        {
+            get
+            {
+                _commandBlockTrunk = _commandBlockTrunk ?? new CommandBlock(BodyPart.Trunk);
+                return _commandBlockTrunk;
+            }
+        }
+
+        private ICommand _commandBlockLegs;
+        public ICommand CommandBlockLegs
+        {
+            get
+            {
+                _commandBlockLegs = _commandBlockLegs ?? new CommandBlock(BodyPart.Legs);
+                return _commandBlockLegs;
             }
         }
 
@@ -57,13 +68,33 @@ namespace FitghtingClub_WPF
             }
         }
 
-        private ICommand _commandHit;
-        public ICommand CommandHit
+        private ICommand _commandHitHead;
+        public ICommand CommandHitHead
         {
             get
             {
-                _commandHit = _commandHit ?? new CommandHit();
-                return _commandHit;
+                _commandHitHead = _commandHitHead ?? new CommandHit(BodyPart.Head);
+                return _commandHitHead;
+            }
+        }
+
+        private ICommand _commandHitTrunk;
+        public ICommand CommandHitTrunk
+        {
+            get
+            {
+                _commandHitTrunk = _commandHitTrunk ?? new CommandHit(BodyPart.Trunk);
+                return _commandHitTrunk;
+            }
+        }
+
+        private ICommand _commandHitLegs;
+        public ICommand CommandHitLegs
+        {
+            get
+            {
+                _commandHitLegs = _commandHitLegs ?? new CommandHit(BodyPart.Legs);
+                return _commandHitLegs;
             }
         }
 

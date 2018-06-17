@@ -12,14 +12,22 @@ namespace FitghtingClub_WPF
     //синглетон
     public sealed class Game : INotifyPropertyChanged
     {
-        public event EventHandler<EventArgsBlockRouted> BlockEvent;
         public event EventHandler<EventArgsDeathRouted> DeathEvent;
         public event EventHandler<EventArgsWoundRouted> WoundEventRouted;
         public event EventHandler NewGameEvent;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
+        
         public int Round { get; set; }
+
         public List<BasePlayer> Players { get; private set; }
-        private bool _isNotOver;
+
         int _currentPlayer;
         public int CurrentPlayer
         {
@@ -27,22 +35,11 @@ namespace FitghtingClub_WPF
             set
             {
                 _currentPlayer = value;
-                OnPropertyChanged("Current");
+                OnPropertyChanged("CurrentPlayer");
             }
         }
-
-        private void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public bool IsNotOver
-        {
-            get => Players[0].HealthPoints > 0 && Players[1].HealthPoints > 0;
-            private set => _isNotOver = value;
-        }
+                
+        public bool IsNotOver { get; private set; }
 
         private static Game _game;
 
@@ -54,14 +51,16 @@ namespace FitghtingClub_WPF
 
         public void NewGame()
         {
-            _game = new Game();
+            Round = 0;
+            IsNotOver = true;
+            CurrentPlayer = 1;
             NewGameEvent?.Invoke(this, new EventArgs());
         }
 
         Game()
         {
             _game = this;
-            _isNotOver = true;
+            IsNotOver = false;
 
             Players = new List<BasePlayer>
             {
@@ -69,8 +68,7 @@ namespace FitghtingClub_WPF
                 new AIPlayer("AIPlayer")
             };
 
-            _currentPlayer = 1;
-            Round = 1;
+            CurrentPlayer = 1;
 
             foreach (BasePlayer player in Players)
             {
@@ -82,20 +80,15 @@ namespace FitghtingClub_WPF
             }
         }
 
-
         private void Game_HitEvent(object sender, EventArgsHit e)
         {
             if (sender is BasePlayer)
             {
                 BasePlayer player = sender is AIPlayer ? Players[0] : Players[1];
-                player.GetHit(sender, new EventArgsWoundRouted(e.Part, e.Power));
+                WoundEventRouted?.Invoke(sender, new EventArgsWoundRouted(e.Part, e.Power));
                 (sender as BasePlayer).HaveToSetHit = false;
                 NextPlayer();
-                Players[CurrentPlayer].HaveToSetBlock = true;
-                if (CurrentPlayer == 1)
-                {
-                    Players[_currentPlayer].MakeBlock(null, null);
-                }
+                Play();
             }
         }
 
@@ -110,6 +103,7 @@ namespace FitghtingClub_WPF
                     player.HaveToSetBlock = false;
                     player.HaveToSetHit = false;
                 }
+                IsNotOver = false;
             }
         }
 
@@ -123,7 +117,7 @@ namespace FitghtingClub_WPF
                 Players[CurrentPlayer].HaveToSetHit = true;
                 if (CurrentPlayer == 1)
                 {
-                    Players[_currentPlayer].MakeHit(null, null);
+                    Players[_currentPlayer].MakeHit(BodyPart.Head);
                 }
             }
         }
@@ -131,10 +125,11 @@ namespace FitghtingClub_WPF
 
         public void Play()
         {
+            Round++;
             Players[_currentPlayer].HaveToSetBlock = true;
             if (CurrentPlayer == 1)
             {
-                Players[_currentPlayer].MakeBlock(null, null);
+                Players[_currentPlayer].MakeBlock(BodyPart.Head);
             }
         }
 

@@ -58,7 +58,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CommandNewGame.cs" />
-    <Compile Include="EventArgs\EventArgsBlockRouted.cs" />
     <Compile Include="EventArgs\EventArgsDeathRouted.cs" />
     <Compile Include="EventArgs\EventArgsDeath.cs" />
     <Compile Include="EventArgs\EventArgsBlock.cs" />

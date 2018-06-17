@@ -18,12 +18,13 @@ namespace FitghtingClub_WPF
             _player = player;
         }
 
-        public int Health {
+        public int HealthPoints
+        {
             get => _player.HealthPoints;
             set
             {
                 _player.HealthPoints = value;
-                OnPropertyChanged("Health");
+                OnPropertyChanged("HealthPoints");
             }
         }
 

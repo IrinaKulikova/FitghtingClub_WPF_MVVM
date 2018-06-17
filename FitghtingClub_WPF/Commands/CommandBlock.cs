@@ -9,10 +9,16 @@ namespace FitghtingClub_WPF
 {
     class CommandBlock : ICommand
     {
+        BodyPart part;
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public CommandBlock(BodyPart part)
+        {
+            this.part = part;
         }
 
         public bool CanExecute(object parameter)
@@ -22,7 +28,7 @@ namespace FitghtingClub_WPF
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            Game.GetInstance().Players[0].MakeBlock(part);
         }
     }
 }

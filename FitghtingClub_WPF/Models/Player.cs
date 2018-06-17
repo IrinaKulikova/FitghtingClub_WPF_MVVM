@@ -11,14 +11,15 @@ namespace FitghtingClub_WPF
     {
         public Player(string name) : base(name) { }
 
-        public override void MakeBlock(Object sender, EventArgsBlock e)
+        public override void MakeBlock(BodyPart part)
         {
-            Block(this, new EventArgsBlock(Blocked));
+            Blocked = part;
+            Block(this, new EventArgsBlock(part));
         }
 
-        public override void MakeHit(Object sender, EventArgsHit e)
+        public override void MakeHit(BodyPart part)
         {
-            Hit(this, new EventArgsHit(e.Part, new Random().Next((int)HitPower.Min, (int)HitPower.Max)));
+            Hit(this, new EventArgsHit(part, new Random().Next((int)HitPower.Min, (int)HitPower.Max)));
         }
     }
 }
