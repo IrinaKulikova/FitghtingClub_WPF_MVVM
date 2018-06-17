@@ -25,6 +25,16 @@ namespace FitghtingClub_WPF
                 OnPropertyChanged("CurrentPlayer");
             }
         }
+        
+        public String CurrentPlayerName
+        {
+            get => _game.Players[CurrentPlayer].Name;
+            set
+            {
+                _game.Players[CurrentPlayer].Name = value;
+                OnPropertyChanged("CurrentPlayerName");
+            }
+        }
 
         public int Round
         {

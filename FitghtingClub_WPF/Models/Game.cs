@@ -20,8 +20,8 @@ namespace FitghtingClub_WPF
 
         int _firstPlayer;
 
-        Timer pauseHit;
-        Timer pauseBlock;
+        Timer pauseHit = new Timer();
+        Timer pauseBlock = new Timer();
 
         public void OnPropertyChanged(string property)
         {
@@ -53,6 +53,17 @@ namespace FitghtingClub_WPF
             }
         }
 
+        String _currentPlayerName;
+        public String CurrentPlayerName
+        {
+            get => _currentPlayerName;
+            set
+            {
+                _currentPlayerName = value;
+                OnPropertyChanged("CurrentPlayerName");
+            }
+        }
+
         public bool IsNotOver { get; private set; }
 
         private static Game _game;
@@ -69,6 +80,7 @@ namespace FitghtingClub_WPF
             Round = 1;
             IsNotOver = true;
             CurrentPlayer = new Random().Next(0, Players.Count);
+            CurrentPlayerName = Players[CurrentPlayer].Name;
             _firstPlayer = CurrentPlayer;
             NewGameEvent?.Invoke(this, new EventArgs());
         }
@@ -93,6 +105,23 @@ namespace FitghtingClub_WPF
                 _game.NewGameEvent += player.NewGame;
                 _game.WoundEventRouted += player.GetHit;
             }
+
+            pauseHit.Interval = 1000;
+            pauseBlock.Interval = 1000;
+            pauseBlock.Tick += PauseBlock_Tick;
+            pauseHit.Tick += PauseHit_Tick;
+        }
+
+        private void PauseHit_Tick(object sender, EventArgs e)
+        {
+            Players[CurrentPlayer].MakeHit(BodyPart.Head);
+            pauseHit.Stop();
+        }
+
+        private void PauseBlock_Tick(object sender, EventArgs e)
+        {
+            Players[CurrentPlayer].MakeBlock(BodyPart.Head);
+            pauseBlock.Stop();
         }
 
         private void Game_HitEvent(object sender, EventArgsHit e)
@@ -129,27 +158,26 @@ namespace FitghtingClub_WPF
                 Players[CurrentPlayer].HaveToSetHit = true;
                 if (Players[CurrentPlayer] is AIPlayer)
                 {
-                    Players[CurrentPlayer].MakeHit(BodyPart.Head);
+                    pauseHit.Start();
                 }
             }
         }
-
-
+        
         public void Play()
         {
             Players[CurrentPlayer].HaveToSetBlock = true;
             if (Players[CurrentPlayer] is AIPlayer)
             {
-                Players[CurrentPlayer].MakeBlock(BodyPart.Head);
+                pauseBlock.Start();
             }
         }
-
 
         private void NextPlayer()
         {
             CurrentPlayer++;
             CurrentPlayer = CurrentPlayer >= Players.Count ? 0 : CurrentPlayer;
-            Round = (_firstPlayer == CurrentPlayer) ? Round++ : Round;
+            CurrentPlayerName = Players[CurrentPlayer].Name;
+            Round = (_firstPlayer == CurrentPlayer) ? ++Round : Round;
         }
     }
 }

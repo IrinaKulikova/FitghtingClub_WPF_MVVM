@@ -11,7 +11,7 @@
         <local:ViewModelGame/>
     </Window.DataContext>
     <Window.Resources>
-        <sys:Double x:Key="sizeFont">18</sys:Double>
+        <sys:Double x:Key="sizeFont">16</sys:Double>
         <sys:Double x:Key="widthButtons">120</sys:Double>
         <sys:Double x:Key="heightButtons">36</sys:Double>
         <sys:Double x:Key="widthPlayers">200</sys:Double>
@@ -174,25 +174,52 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label
-                    Name="loger"
-                    Content="{Binding CurrentPlayer}"/>
-                <Label 
-                    Grid.Row="1"
-                    Name="time" 
-                    Content="data time" />
-                <Label 
-                    Grid.Row="2" 
-                    Name="round" 
-                    Content="{Binding Round}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Player's Name:"/>
+                    <Label
+                         Grid.Column="1"
+                         Name="loger"
+                         Content="{Binding CurrentPlayerName}"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label   
+                        Content="Logger" />
+                    <Label 
+                        Grid.Column="2"
+                        Name="time" 
+                        Content="{Binding logger}" />
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label   
+                        Content="Round: " />
+                    <Label   
+                        Grid.Column="1"
+                        Name="round" 
+                        Content="{Binding Round}" />
+                </Grid>
+
                 <Button 
                     Name="buttonNewGame"
                     Command="{Binding CommandNewGame}" 
                     FontSize="{StaticResource sizeFont}" 
-                    Margin="{StaticResource margin}" 
-                    Padding="{StaticResource margin}" 
+                    Margin="16" 
+                    Padding="12" 
                     Grid.Row="3"
                     Content="New Game">
                 </Button>
