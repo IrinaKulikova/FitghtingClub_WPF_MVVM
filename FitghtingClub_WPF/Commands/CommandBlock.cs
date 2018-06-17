@@ -23,7 +23,7 @@ namespace FitghtingClub_WPF
 
         public bool CanExecute(object parameter)
         {
-            return Game.GetInstance().Players[0].HaveToSetBlock;
+            return Game.GetInstance().Players[0].HaveToSetBlock && Game.GetInstance().IsNotOver;
         }
 
         public void Execute(object parameter)

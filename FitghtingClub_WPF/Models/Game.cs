@@ -18,6 +18,10 @@ namespace FitghtingClub_WPF
         public event EventHandler NewGameEvent;
         public event PropertyChangedEventHandler PropertyChanged;
 
+        int _firstPlayer;
+
+        Timer pauseHit;
+        Timer pauseBlock;
 
         public void OnPropertyChanged(string property)
         {
@@ -33,7 +37,7 @@ namespace FitghtingClub_WPF
             get => _round;
             set
             {
-                _currentPlayer = value;
+                _round = value;
                 OnPropertyChanged("Round");
             }
         }
@@ -64,7 +68,8 @@ namespace FitghtingClub_WPF
         {
             Round = 1;
             IsNotOver = true;
-            CurrentPlayer = 1;
+            CurrentPlayer = new Random().Next(0, Players.Count);
+            _firstPlayer = CurrentPlayer;
             NewGameEvent?.Invoke(this, new EventArgs());
         }
 
@@ -79,8 +84,6 @@ namespace FitghtingClub_WPF
                 new Player("Player"),
                 new AIPlayer("AIPlayer")
             };
-
-            CurrentPlayer = 1;
 
             foreach (BasePlayer player in Players)
             {
@@ -98,8 +101,6 @@ namespace FitghtingClub_WPF
             {
                 WoundEventRouted?.Invoke(sender, new EventArgsWoundRouted(e.Part, e.Power));
                 (sender as BasePlayer).HaveToSetHit = false;
-                Round = sender is AIPlayer ? Round++ : Round;
-                //NextPlayer();
                 Play();
             }
         }
@@ -148,6 +149,7 @@ namespace FitghtingClub_WPF
         {
             CurrentPlayer++;
             CurrentPlayer = CurrentPlayer >= Players.Count ? 0 : CurrentPlayer;
+            Round = (_firstPlayer == CurrentPlayer) ? Round++ : Round;
         }
     }
 }
