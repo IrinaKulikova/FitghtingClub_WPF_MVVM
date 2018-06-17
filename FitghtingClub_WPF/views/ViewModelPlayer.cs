@@ -5,11 +5,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace FitghtingClub_WPF
 {
-    class ViewModelPlayer : INotifyPropertyChanged
+    class ViewModelPlayer : DependencyObject
     {
         private BasePlayer _player;
 
@@ -35,16 +36,6 @@ namespace FitghtingClub_WPF
             {
                 _player.Name = value;
                 OnPropertyChanged("Name");
-            }
-        }
-
-        public BodyPart SetBlock
-        {
-            get => _player.Blocked;
-            set
-            {
-                _player.Blocked = value;
-                OnPropertyChanged("SetBlock");
             }
         }
 

@@ -80,7 +80,7 @@
                         <Label 
                             Grid.Column="1" 
                             Name="healthPlayerNumber" 
-                            Content="{Binding Players[0].HealthPoints}" />
+                            Content="{Binding Players[0].HealthPoints }" />
                     </Grid>
                     <ProgressBar 
                         Grid.Row="1"

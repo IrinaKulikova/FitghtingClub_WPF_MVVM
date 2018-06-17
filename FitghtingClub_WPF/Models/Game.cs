@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace FitghtingClub_WPF
@@ -15,18 +16,27 @@ namespace FitghtingClub_WPF
         public event EventHandler<EventArgsDeathRouted> DeathEvent;
         public event EventHandler<EventArgsWoundRouted> WoundEventRouted;
         public event EventHandler NewGameEvent;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged([CallerMemberName]string prop = "")
+
+        public void OnPropertyChanged(string property)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        
-        public int Round { get; set; }
-
         public List<BasePlayer> Players { get; private set; }
+
+        int _round;
+
+        public int Round
+        {
+            get => _round;
+            set
+            {
+                _currentPlayer = value;
+                OnPropertyChanged("Round");
+            }
+        }
 
         int _currentPlayer;
         public int CurrentPlayer
@@ -38,7 +48,7 @@ namespace FitghtingClub_WPF
                 OnPropertyChanged("CurrentPlayer");
             }
         }
-                
+
         public bool IsNotOver { get; private set; }
 
         private static Game _game;
@@ -49,13 +59,15 @@ namespace FitghtingClub_WPF
             return _game;
         }
 
+
         public void NewGame()
         {
-            Round = 0;
+            Round = 1;
             IsNotOver = true;
             CurrentPlayer = 1;
             NewGameEvent?.Invoke(this, new EventArgs());
         }
+
 
         Game()
         {
@@ -84,14 +96,13 @@ namespace FitghtingClub_WPF
         {
             if (sender is BasePlayer)
             {
-                BasePlayer player = sender is AIPlayer ? Players[0] : Players[1];
                 WoundEventRouted?.Invoke(sender, new EventArgsWoundRouted(e.Part, e.Power));
                 (sender as BasePlayer).HaveToSetHit = false;
-                NextPlayer();
+                Round = sender is AIPlayer ? Round++ : Round;
+                //NextPlayer();
                 Play();
             }
         }
-
 
         private void Game_DeathEvent(object sender, EventArgsDeath e)
         {
@@ -115,9 +126,9 @@ namespace FitghtingClub_WPF
                 (sender as BasePlayer).HaveToSetBlock = false;
                 NextPlayer();
                 Players[CurrentPlayer].HaveToSetHit = true;
-                if (CurrentPlayer == 1)
+                if (Players[CurrentPlayer] is AIPlayer)
                 {
-                    Players[_currentPlayer].MakeHit(BodyPart.Head);
+                    Players[CurrentPlayer].MakeHit(BodyPart.Head);
                 }
             }
         }
@@ -125,19 +136,18 @@ namespace FitghtingClub_WPF
 
         public void Play()
         {
-            Round++;
-            Players[_currentPlayer].HaveToSetBlock = true;
-            if (CurrentPlayer == 1)
+            Players[CurrentPlayer].HaveToSetBlock = true;
+            if (Players[CurrentPlayer] is AIPlayer)
             {
-                Players[_currentPlayer].MakeBlock(BodyPart.Head);
+                Players[CurrentPlayer].MakeBlock(BodyPart.Head);
             }
         }
 
 
         private void NextPlayer()
         {
-            _currentPlayer++;
-            CurrentPlayer = _currentPlayer >= Players.Count ? 0 : _currentPlayer;
+            CurrentPlayer++;
+            CurrentPlayer = CurrentPlayer >= Players.Count ? 0 : CurrentPlayer;
         }
     }
 }

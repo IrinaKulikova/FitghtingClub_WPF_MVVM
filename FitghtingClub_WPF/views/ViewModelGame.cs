@@ -14,18 +14,26 @@ namespace FitghtingClub_WPF
     {
         private Game _game;
 
-        ObservableCollection<ViewModelPlayer> _players = new ObservableCollection<ViewModelPlayer>();
-
-        public ObservableCollection<ViewModelPlayer> Players { get; set;}
+        public ObservableCollection<BasePlayer> Players { get; set; }
 
         public int CurrentPlayer
         {
             get => _game.CurrentPlayer;
+            set
+            {
+                _game.CurrentPlayer = value;
+                OnPropertyChanged("CurrentPlayer");
+            }
         }
 
         public int Round
         {
             get => _game.Round;
+            set
+            {
+                _game.Round = value;
+                OnPropertyChanged("Round");
+            }
         }
 
         private ICommand _commandBlockHead;
@@ -101,10 +109,13 @@ namespace FitghtingClub_WPF
         public ViewModelGame()
         {
             _game = Game.GetInstance();
-            foreach (BasePlayer player in _game.Players)
-            {
-                Players.Add(new ViewModelPlayer(player));
-            }
+            Players = new ObservableCollection<BasePlayer>(_game.Players);
+            _game.PropertyChanged += _game_PropertyChanged;
+        }
+
+        private void _game_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(e.PropertyName);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

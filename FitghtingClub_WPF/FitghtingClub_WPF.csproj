@@ -67,7 +67,6 @@
     <Compile Include="Commands\CommandBlock.cs" />
     <Compile Include="Commands\CommandHit.cs" />
     <Compile Include="Views\ViewModelGame.cs" />
-    <Compile Include="Views\ViewModelPlayer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

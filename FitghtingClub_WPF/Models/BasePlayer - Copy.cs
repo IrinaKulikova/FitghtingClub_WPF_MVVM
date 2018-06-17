@@ -5,11 +5,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace FitghtingClub_WPF
 {
-    public abstract class BasePlayer : DependencyObject
+    public abstract class BasePlayer : INotifyPropertyChanged
     {
         public event EventHandler<EventArgsHit> HitEvent;
         public event EventHandler<EventArgsBlock> BlockEvent;
@@ -22,30 +21,6 @@ namespace FitghtingClub_WPF
         private bool _haveToSetHit;
         public const int MAX_POINTS = 100;
         public event PropertyChangedEventHandler PropertyChanged;
-
-
-        public string Name
-        {
-            get { return (string)GetValue(NameProperty); }
-            set { SetValue(NameProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Name.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty NameProperty =
-            DependencyProperty.Register("Name", typeof(string), typeof(BasePlayer), new PropertyMetadata("no name"));
-
-
-        public int HealthPoints
-        {
-            get { return (int)GetValue(HealthPointsProperty); }
-            set { SetValue(HealthPointsProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for HealthPoints.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty HealthPointsProperty =
-            DependencyProperty.Register("HealthPoints", typeof(int), typeof(BasePlayer), new PropertyMetadata(default(int)));
-
-
 
         public bool HaveToSetBlock
         {
@@ -75,6 +50,26 @@ namespace FitghtingClub_WPF
         public void Block(Object sender, EventArgsBlock e)
         {
             BlockEvent?.Invoke(sender, e);
+        }
+
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+
+        public int HealthPoints
+        {
+            get => _healthPoints;
+            set
+            {
+                _healthPoints = value;
+                OnPropertyChanged("HealthPoints");
+            }
         }
 
         public BodyPart Blocked
