@@ -65,7 +65,9 @@
     <Compile Include="EventArgs\EventArgsHit.cs" />
     <Compile Include="Commands\CommandBlock.cs" />
     <Compile Include="Commands\CommandHit.cs" />
+    <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\Logger.cs" />
+    <Compile Include="Models\IGame.cs" />
     <Compile Include="Views\ViewModelGame.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

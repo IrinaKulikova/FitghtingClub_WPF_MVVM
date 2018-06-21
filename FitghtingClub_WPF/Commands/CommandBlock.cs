@@ -29,7 +29,7 @@ namespace FitghtingClub_WPF
         public void Execute(object parameter)
         {
             Game.GetInstance().Players[0].MakeBlock(part);
-            Logger.GetInstance().Status = Game.GetInstance().Players[0].Name + " установил защиту " + part + " !";
+            Logger.GetInstance().Status = Game.GetInstance().Players[0].Name + " set block " + part + " !";
         }
     }
 }

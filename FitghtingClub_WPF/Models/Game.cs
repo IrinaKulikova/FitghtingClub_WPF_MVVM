@@ -11,14 +11,12 @@ using System.Windows.Forms;
 namespace FitghtingClub_WPF
 {
     //синглетон
-    public sealed class Game : INotifyPropertyChanged
+    public sealed class Game : IGame, INotifyPropertyChanged
     {
         public event EventHandler<EventArgsDeath> DeathEvent;
         public event EventHandler<EventArgsWound> WoundEvent;
-        public event EventHandler<EventArgsHit> HitEvent;
         public event EventHandler<EventArgsBlock> BlockEvent;
         public event EventHandler<EventArgsProtected> ProtectedEvent;
-
         public event EventHandler NewGameEvent;
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -31,7 +29,7 @@ namespace FitghtingClub_WPF
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        public List<BasePlayer> Players { get; private set; }
+        public List<BasePlayer> Players { get; set; }
 
         int _round;
 
@@ -119,7 +117,7 @@ namespace FitghtingClub_WPF
 
         private void Player_ProtectedEvent(object sender, EventArgsProtected e)
         {
-           ProtectedEvent?.Invoke(sender, e);
+            ProtectedEvent?.Invoke(sender, e);
         }
 
         private void PauseHit_Tick(object sender, EventArgs e)
@@ -132,6 +130,8 @@ namespace FitghtingClub_WPF
         {
             Players[CurrentPlayer].MakeBlock(BodyPart.Head);
             pauseBlock.Stop();
+
+            //debug
             BlockEvent?.Invoke(Players[1], new EventArgsBlock(Players[1].Blocked));
         }
 
@@ -184,7 +184,7 @@ namespace FitghtingClub_WPF
             }
         }
 
-        private void NextPlayer()
+        public void NextPlayer()
         {
             CurrentPlayer++;
             CurrentPlayer = CurrentPlayer >= Players.Count ? 0 : CurrentPlayer;

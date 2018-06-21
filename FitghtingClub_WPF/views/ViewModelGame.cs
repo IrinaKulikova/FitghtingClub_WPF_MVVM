@@ -12,8 +12,8 @@ namespace FitghtingClub_WPF
 {
     class ViewModelGame : INotifyPropertyChanged
     {
-        private Logger _logger;
-        private Game _game;
+        private ILogger _logger;
+        private IGame _game;
 
         public ObservableCollection<BasePlayer> Players { get; set; }
 
@@ -143,12 +143,12 @@ namespace FitghtingClub_WPF
 
         private void _game_WoundEvent(object sender, EventArgsWound e)
         {
-            _logger.Status = (sender as BasePlayer).Name + " получил урон в " + e.Part;
+            _logger.Status = (sender as BasePlayer).Name + " hit in the " + e.Part;
         }
 
         private void _game_ProtectedEvent(object sender, EventArgsProtected e)
         {
-            _logger.Status = (sender as BasePlayer).Name + " защитился " + e.Part;
+            _logger.Status = (sender as BasePlayer).Name + " protected " + e.Part;
         }
 
         private void _game_NewGameEvent(object sender, EventArgs e)
@@ -163,7 +163,7 @@ namespace FitghtingClub_WPF
 
         private void _game_BlockEvent(object sender, EventArgsBlock e)
         {
-            _logger.Status = (sender as BasePlayer).Name + " установил защиту " + e.Part;
+            _logger.Status = (sender as BasePlayer).Name + " set block " + e.Part;
         }
 
         private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
