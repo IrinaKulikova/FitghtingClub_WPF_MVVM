@@ -13,10 +13,9 @@ namespace FitghtingClub_WPF
     {
         public event EventHandler<EventArgsHit> HitEvent;
         public event EventHandler<EventArgsBlock> BlockEvent;
+        public event EventHandler<EventArgsProtected> ProtectedEvent;
         public event EventHandler<EventArgsDeath> DeathEvent;
 
-        private string _name;
-        private int _healthPoints;
         private BodyPart _blockPart;
         private bool _haveToSetBlock;
         private bool _haveToSetHit;
@@ -44,7 +43,6 @@ namespace FitghtingClub_WPF
         // Using a DependencyProperty as the backing store for HealthPoints.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HealthPointsProperty =
             DependencyProperty.Register("HealthPoints", typeof(int), typeof(BasePlayer), new PropertyMetadata(default(int)));
-
 
 
         public bool HaveToSetBlock
@@ -93,7 +91,7 @@ namespace FitghtingClub_WPF
             HealthPoints = MAX_POINTS;
         }
 
-        public void GetHit(Object sender, EventArgsWoundRouted e)
+        public void GetHit(Object sender, EventArgsWound e)
         {
             if (sender != this)
             {
@@ -105,6 +103,10 @@ namespace FitghtingClub_WPF
                     {
                         DeathEvent?.Invoke(this, new EventArgsDeath());
                     }
+                }
+                else
+                {
+                    ProtectedEvent?.Invoke(this, new EventArgsProtected(Blocked));
                 }
             }
         }

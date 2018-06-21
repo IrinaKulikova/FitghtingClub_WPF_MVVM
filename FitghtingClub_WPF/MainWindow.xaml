@@ -198,7 +198,7 @@
                     <Label 
                         Grid.Column="2"
                         Name="time" 
-                        Content="{Binding logger}" />
+                        Content="{Binding Status}" />
                 </Grid>
 
                 <Grid Grid.Row="2">

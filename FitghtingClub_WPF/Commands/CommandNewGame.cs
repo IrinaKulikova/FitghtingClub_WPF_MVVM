@@ -30,9 +30,7 @@ namespace FitghtingClub_WPF
 
         public void Execute(object parameter)
         {
-            Game game = Game.GetInstance();
-            game.NewGame();
-            game.Play();
+            Game.GetInstance().NewGame();
             _canExecute = false;
         }
     }

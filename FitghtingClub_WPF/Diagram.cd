@@ -10,15 +10,14 @@
   <Class Name="FitghtingClub_WPF.BasePlayer">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEIAAAwAAAAAAEIJNAEAQAhAAgAAAAAgQQAAAKAEA=</HashCode>
+      <HashCode>AAAEAAgAwAAAAAAEIJNAAAQAhAAgAAAAAgQQAAAKAUA=</HashCode>
       <FileName>Models\BasePlayer.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="FitghtingClub_WPF.Game">
-    <Position X="6.75" Y="0.5" Width="1.5" />
+    <Position X="7.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAIAAAAAIQEEUAAAhAAgAAAAhAAAgAIBAAQ=</HashCode>
+      <HashCode>AAAAAACAgAIAAAAQMQEEUAAAhACgAAAAhAgAwAIRAEQ=</HashCode>
       <FileName>Models\Game.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -31,7 +30,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="FitghtingClub_WPF.CommandBlock">
-    <Position X="15" Y="6" Width="1.5" />
+    <Position X="15" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACACQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Commands\CommandBlock.cs</FileName>
@@ -60,33 +59,18 @@
       <FileName>EventArgs\EventArgsDeath.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FitghtingClub_WPF.EventArgsDeathRouted">
-    <Position X="8.5" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
-      <FileName>EventArgs\EventArgsDeathRouted.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="FitghtingClub_WPF.EventArgsWoundRouted">
-    <Position X="8.5" Y="0.5" Width="1.5" />
+  <Class Name="FitghtingClub_WPF.EventArgsWound">
+    <Position X="9" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
-      <FileName>EventArgs\EventArgsWoundRouted.cs</FileName>
+      <FileName>EventArgs\EventArgsWound.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FitghtingClub_WPF.ViewModelGame">
     <Position X="13.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAgIAAACgAAAAQCIIIAAAIAAgBAgAAAEAAQAgAIAEAQ=</HashCode>
+      <HashCode>IAgIAACGgAAAAQCIIIAAAIAAoAAgIAAEAAQAgAIAEAQ=</HashCode>
       <FileName>Views\ViewModelGame.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="FitghtingClub_WPF.ViewModelPlayer">
-    <Position X="11.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAQAAAAAAAIAAACAQAgAAAAAAAAAAAAEAAAAA=</HashCode>
-      <FileName>Views\ViewModelPlayer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -101,17 +85,10 @@
   <Class Name="FitghtingClub_WPF.CommandNewGame">
     <Position X="15" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAEACAAQAAEAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Commands\CommandNewGame.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="FitghtingClub_WPF.EventArgsHitRouted">
-    <Position X="8.5" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAA=</HashCode>
-      <FileName>EventArgs\EventArgsHitRouted.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="FitghtingClub_WPF.EventArgsHit">
     <Position X="4" Y="4.5" Width="1.5" />
@@ -119,6 +96,14 @@
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>EventArgs\EventArgsHit.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="FitghtingClub_WPF.Logger">
+    <Position X="19.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAEAAAAAAAAIAAAAAAAoAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Logger\Logger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Enum Name="FitghtingClub_WPF.BodyPart">
     <Position X="0.5" Y="0.5" Width="1.5" />

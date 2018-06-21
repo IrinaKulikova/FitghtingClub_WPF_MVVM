@@ -13,13 +13,16 @@ namespace FitghtingClub_WPF
     //синглетон
     public sealed class Game : INotifyPropertyChanged
     {
-        public event EventHandler<EventArgsDeathRouted> DeathEvent;
-        public event EventHandler<EventArgsWoundRouted> WoundEventRouted;
+        public event EventHandler<EventArgsDeath> DeathEvent;
+        public event EventHandler<EventArgsWound> WoundEvent;
+        public event EventHandler<EventArgsHit> HitEvent;
+        public event EventHandler<EventArgsBlock> BlockEvent;
+        public event EventHandler<EventArgsProtected> ProtectedEvent;
+
         public event EventHandler NewGameEvent;
         public event PropertyChangedEventHandler PropertyChanged;
 
         int _firstPlayer;
-
         Timer pauseHit = new Timer();
         Timer pauseBlock = new Timer();
 
@@ -83,6 +86,7 @@ namespace FitghtingClub_WPF
             CurrentPlayerName = Players[CurrentPlayer].Name;
             _firstPlayer = CurrentPlayer;
             NewGameEvent?.Invoke(this, new EventArgs());
+            Play();
         }
 
 
@@ -102,14 +106,20 @@ namespace FitghtingClub_WPF
                 player.BlockEvent += Game_BlockEvent;
                 player.DeathEvent += Game_DeathEvent;
                 player.HitEvent += Game_HitEvent;
+                player.ProtectedEvent += Player_ProtectedEvent;
                 _game.NewGameEvent += player.NewGame;
-                _game.WoundEventRouted += player.GetHit;
+                _game.WoundEvent += player.GetHit;
             }
 
-            pauseHit.Interval = 1000;
-            pauseBlock.Interval = 1000;
+            pauseHit.Interval = 2000;
+            pauseBlock.Interval = 2000;
             pauseBlock.Tick += PauseBlock_Tick;
             pauseHit.Tick += PauseHit_Tick;
+        }
+
+        private void Player_ProtectedEvent(object sender, EventArgsProtected e)
+        {
+           ProtectedEvent?.Invoke(sender, e);
         }
 
         private void PauseHit_Tick(object sender, EventArgs e)
@@ -122,13 +132,14 @@ namespace FitghtingClub_WPF
         {
             Players[CurrentPlayer].MakeBlock(BodyPart.Head);
             pauseBlock.Stop();
+            BlockEvent?.Invoke(Players[1], new EventArgsBlock(Players[1].Blocked));
         }
 
         private void Game_HitEvent(object sender, EventArgsHit e)
         {
             if (sender is BasePlayer)
             {
-                WoundEventRouted?.Invoke(sender, new EventArgsWoundRouted(e.Part, e.Power));
+                WoundEvent?.Invoke(sender, new EventArgsWound(e.Part, e.Power));
                 (sender as BasePlayer).HaveToSetHit = false;
                 Play();
             }
@@ -138,7 +149,7 @@ namespace FitghtingClub_WPF
         {
             if (sender is BasePlayer)
             {
-                DeathEvent?.Invoke(this, new EventArgsDeathRouted(sender as BasePlayer));
+                DeathEvent?.Invoke(sender as BasePlayer, new EventArgsDeath());
                 foreach (BasePlayer player in Players)
                 {
                     player.HaveToSetBlock = false;
@@ -146,6 +157,7 @@ namespace FitghtingClub_WPF
                 }
                 IsNotOver = false;
             }
+            DeathEvent?.Invoke(sender, e);
         }
 
 
@@ -162,7 +174,7 @@ namespace FitghtingClub_WPF
                 }
             }
         }
-        
+
         public void Play()
         {
             Players[CurrentPlayer].HaveToSetBlock = true;

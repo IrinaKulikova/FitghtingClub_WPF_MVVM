@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace FitghtingClub_WPF
 {
-    public class EventArgsWoundRouted : EventArgs
+    public class EventArgsProtected : EventArgs
     {
-        public int Power { get; set; }
         public BodyPart Part { get; set; }
 
-        public EventArgsWoundRouted(BodyPart part, int power)
+        public EventArgsProtected(BodyPart part)
         {
             Part = part;
-            Power = power;
         }
     }
 }

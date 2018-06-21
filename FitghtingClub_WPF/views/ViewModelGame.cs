@@ -12,6 +12,7 @@ namespace FitghtingClub_WPF
 {
     class ViewModelGame : INotifyPropertyChanged
     {
+        private Logger _logger;
         private Game _game;
 
         public ObservableCollection<BasePlayer> Players { get; set; }
@@ -25,7 +26,17 @@ namespace FitghtingClub_WPF
                 OnPropertyChanged("CurrentPlayer");
             }
         }
-        
+
+        public String Status
+        {
+            get => _logger.Status;
+            set
+            {
+                _logger.Status = value;
+                OnPropertyChanged("Status");
+            }
+        }
+
         public String CurrentPlayerName
         {
             get => _game.Players[CurrentPlayer].Name;
@@ -119,11 +130,43 @@ namespace FitghtingClub_WPF
         public ViewModelGame()
         {
             _game = Game.GetInstance();
+            _logger = Logger.GetInstance();
+            _logger.PropertyChanged += Model_PropertyChanged;
+            _game.PropertyChanged += Model_PropertyChanged;
+            _game.NewGameEvent += _game_NewGameEvent;
+            _game.BlockEvent += _game_BlockEvent;
+            _game.DeathEvent += _game_DeathEvent;
+            _game.WoundEvent += _game_WoundEvent;
+            _game.ProtectedEvent += _game_ProtectedEvent;
             Players = new ObservableCollection<BasePlayer>(_game.Players);
-            _game.PropertyChanged += _game_PropertyChanged;
         }
 
-        private void _game_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void _game_WoundEvent(object sender, EventArgsWound e)
+        {
+            _logger.Status = (sender as BasePlayer).Name + " бъёт в " + e.Part;
+        }
+
+        private void _game_ProtectedEvent(object sender, EventArgsProtected e)
+        {
+            _logger.Status = (sender as BasePlayer).Name + " защитился " + e.Part;
+        }
+
+        private void _game_NewGameEvent(object sender, EventArgs e)
+        {
+            _logger.Status = "New game!";
+        }
+
+        private void _game_DeathEvent(object sender, EventArgsDeath e)
+        {
+            _logger.Status = (sender as BasePlayer).Name + " died!!!";
+        }
+
+        private void _game_BlockEvent(object sender, EventArgsBlock e)
+        {
+            _logger.Status = (sender as BasePlayer).Name + " установил защиту " + e.Part;
+        }
+
+        private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             OnPropertyChanged(e.PropertyName);
         }
