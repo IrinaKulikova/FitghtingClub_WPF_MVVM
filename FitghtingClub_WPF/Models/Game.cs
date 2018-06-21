@@ -141,7 +141,10 @@ namespace FitghtingClub_WPF
             {
                 WoundEvent?.Invoke(sender, new EventArgsWound(e.Part, e.Power));
                 (sender as BasePlayer).HaveToSetHit = false;
-                Play();
+                if (IsNotOver)
+                {
+                    Play();
+                }
             }
         }
 

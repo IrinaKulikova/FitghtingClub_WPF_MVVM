@@ -143,27 +143,27 @@ namespace FitghtingClub_WPF
 
         private void _game_WoundEvent(object sender, EventArgsWound e)
         {
-            _logger.Status = (sender as BasePlayer).Name + " hit in the " + e.Part;
+            _logger.Log((sender as BasePlayer).Name + " hit in the " + e.Part);
         }
 
         private void _game_ProtectedEvent(object sender, EventArgsProtected e)
         {
-            _logger.Status = (sender as BasePlayer).Name + " protected " + e.Part;
+            _logger.Log((sender as BasePlayer).Name + " protected " + e.Part);
         }
 
         private void _game_NewGameEvent(object sender, EventArgs e)
         {
-            _logger.Status = "New game!";
+            _logger.Log("New game!");
         }
 
         private void _game_DeathEvent(object sender, EventArgsDeath e)
         {
-            _logger.Status = (sender as BasePlayer).Name + " died!!!";
+            _logger.Log((sender as BasePlayer).Name + " died!!!");
         }
 
         private void _game_BlockEvent(object sender, EventArgsBlock e)
         {
-            _logger.Status = (sender as BasePlayer).Name + " set block " + e.Part;
+            _logger.Log((sender as BasePlayer).Name + " set block " + e.Part);
         }
 
         private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
