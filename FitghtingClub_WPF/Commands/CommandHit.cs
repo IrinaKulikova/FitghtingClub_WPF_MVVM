@@ -28,7 +28,7 @@ namespace FitghtingClub_WPF
 
         public void Execute(object parameter)
         {
-            Game.GetInstance().Players[0].MakeHit(BodyPart.Trunk);
+            Game.GetInstance().Players[0].MakeHit(part);
             Logger.GetInstance().Status = Game.GetInstance().Players[0].Name + " бъёт в " + part + " !";
         }
     }

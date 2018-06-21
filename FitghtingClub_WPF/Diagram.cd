@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="FitghtingClub_WPF.AIPlayer">
-    <Position X="3.25" Y="7.25" Width="1.5" />
+    <Position X="3.25" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAIAAA=</HashCode>
       <FileName>Models\AIPlayer.cs</FileName>
@@ -10,27 +10,27 @@
   <Class Name="FitghtingClub_WPF.BasePlayer">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAgAwAAAAAAEIJNAAAQAhAAgAAAAAgQQAAAKAUA=</HashCode>
+      <HashCode>AAAEAAgAwAAAAAAEIJNAAAQAhAAgAAAAAgQQAgAKAUA=</HashCode>
       <FileName>Models\BasePlayer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FitghtingClub_WPF.Game">
-    <Position X="7.25" Y="0.5" Width="1.5" />
+    <Position X="6.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAgAIAAAAQMQEEUAAAhACgAAAAhAgAwAIRAEQ=</HashCode>
+      <HashCode>AIAAAACAgAIAAAAQMQEEUAAAhACgAAAAhAgQwgIRAEQ=</HashCode>
       <FileName>Models\Game.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="FitghtingClub_WPF.Player">
-    <Position X="1.5" Y="7.25" Width="1.5" />
+    <Position X="1.5" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAIAAA=</HashCode>
       <FileName>Models\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FitghtingClub_WPF.CommandBlock">
-    <Position X="15" Y="6.75" Width="1.5" />
+    <Position X="13" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACACQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Commands\CommandBlock.cs</FileName>
@@ -38,7 +38,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="FitghtingClub_WPF.CommandHit">
-    <Position X="15" Y="0.5" Width="1.5" />
+    <Position X="13" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACACQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Commands\CommandHit.cs</FileName>
@@ -60,22 +60,22 @@
     </TypeIdentifier>
   </Class>
   <Class Name="FitghtingClub_WPF.EventArgsWound">
-    <Position X="9" Y="0.5" Width="1.5" />
+    <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>EventArgs\EventArgsWound.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FitghtingClub_WPF.ViewModelGame">
-    <Position X="13.25" Y="0.5" Width="1.5" />
+    <Position X="11.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAgIAACGgAAAAQCIIIAAAIAAoAAgIAAEAAQAgAIAEAQ=</HashCode>
+      <HashCode>IAgIAACGgAACAQCIIIAAAIAAoAAgIAQEAAQAgEIAEQQ=</HashCode>
       <FileName>Views\ViewModelGame.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="FitghtingClub_WPF.MainWindow">
-    <Position X="18" Y="0.5" Width="1.5" />
+    <Position X="15.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MainWindow.xaml.cs</FileName>
@@ -83,7 +83,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="FitghtingClub_WPF.CommandNewGame">
-    <Position X="15" Y="3.5" Width="1.5" />
+    <Position X="13" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEACAAQAAEAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Commands\CommandNewGame.cs</FileName>
@@ -98,9 +98,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="FitghtingClub_WPF.Logger">
-    <Position X="19.75" Y="0.5" Width="1.5" />
+    <Position X="17.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAAAAAEAAAAAAAAIAAAAAAAoAAAAAQAAAAAAAAAAAA=</HashCode>
+      <HashCode>AEAAAAAEAAAAAAAAIAAAAAAApAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Logger\Logger.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

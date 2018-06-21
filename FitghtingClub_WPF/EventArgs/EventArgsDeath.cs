@@ -8,7 +8,6 @@ namespace FitghtingClub_WPF
 {
     public class EventArgsDeath : EventArgs
     {
-        public EventArgsDeath()
-        { }
+        public EventArgsDeath() { }
     }
 }

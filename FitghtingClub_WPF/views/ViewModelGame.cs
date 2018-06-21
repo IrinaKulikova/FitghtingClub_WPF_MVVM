@@ -143,7 +143,7 @@ namespace FitghtingClub_WPF
 
         private void _game_WoundEvent(object sender, EventArgsWound e)
         {
-            _logger.Status = (sender as BasePlayer).Name + " бъёт в " + e.Part;
+            _logger.Status = (sender as BasePlayer).Name + " получил урон в " + e.Part;
         }
 
         private void _game_ProtectedEvent(object sender, EventArgsProtected e)
