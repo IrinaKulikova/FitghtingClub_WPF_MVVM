@@ -15,6 +15,9 @@ namespace FitghtingClub_WPF
         private ILogger _logger;
         private IGame _game;
 
+        //поле хранит данные для кого отображается игра, для Player или AIPlayer
+        public bool IsAIPlayer { get; set; }
+
         public ObservableCollection<BasePlayer> Players { get; set; }
 
         public int CurrentPlayer
@@ -62,6 +65,10 @@ namespace FitghtingClub_WPF
         {
             get
             {
+                if (IsAIPlayer)
+                {
+                    return new CommandEmpty();
+                }
                 _commandBlockHead = _commandBlockHead ?? new CommandBlock(BodyPart.Head);
                 return _commandBlockHead;
             }
@@ -72,6 +79,10 @@ namespace FitghtingClub_WPF
         {
             get
             {
+                if (IsAIPlayer)
+                {
+                    return new CommandEmpty();
+                }
                 _commandBlockTrunk = _commandBlockTrunk ?? new CommandBlock(BodyPart.Trunk);
                 return _commandBlockTrunk;
             }
@@ -82,6 +93,10 @@ namespace FitghtingClub_WPF
         {
             get
             {
+                if (IsAIPlayer)
+                {
+                    return new CommandEmpty();
+                }
                 _commandBlockLegs = _commandBlockLegs ?? new CommandBlock(BodyPart.Legs);
                 return _commandBlockLegs;
             }
@@ -92,6 +107,10 @@ namespace FitghtingClub_WPF
         {
             get
             {
+                if (IsAIPlayer)
+                {
+                    return new CommandEmpty();
+                }
                 _commandNewGame = _commandNewGame ?? new CommandNewGame();
                 return _commandNewGame;
             }
@@ -102,6 +121,10 @@ namespace FitghtingClub_WPF
         {
             get
             {
+                if (IsAIPlayer)
+                {
+                    return new CommandEmpty();
+                }
                 _commandHitHead = _commandHitHead ?? new CommandHit(BodyPart.Head);
                 return _commandHitHead;
             }
@@ -112,6 +135,10 @@ namespace FitghtingClub_WPF
         {
             get
             {
+                if (IsAIPlayer)
+                {
+                    return new CommandEmpty();
+                }
                 _commandHitTrunk = _commandHitTrunk ?? new CommandHit(BodyPart.Trunk);
                 return _commandHitTrunk;
             }
@@ -122,6 +149,10 @@ namespace FitghtingClub_WPF
         {
             get
             {
+                if (IsAIPlayer)
+                {
+                    return new CommandEmpty();
+                }
                 _commandHitLegs = _commandHitLegs ?? new CommandHit(BodyPart.Legs);
                 return _commandHitLegs;
             }
@@ -130,7 +161,7 @@ namespace FitghtingClub_WPF
         public ViewModelGame()
         {
             _game = Game.GetInstance();
-            _logger = Logger.GetInstance();
+            _logger = SimpleLogger.GetInstance();
             _logger.PropertyChanged += Model_PropertyChanged;
             _game.PropertyChanged += Model_PropertyChanged;
             _game.NewGameEvent += _game_NewGameEvent;
@@ -138,7 +169,7 @@ namespace FitghtingClub_WPF
             _game.DeathEvent += _game_DeathEvent;
             _game.WoundEvent += _game_WoundEvent;
             _game.ProtectedEvent += _game_ProtectedEvent;
-            Players = new ObservableCollection<BasePlayer>(_game.Players);
+            Players = new ObservableCollection<BasePlayer>(_game.Players);            
         }
 
         private void _game_WoundEvent(object sender, EventArgsWound e)

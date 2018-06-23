@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 namespace FitghtingClub_WPF
 {
     //синглетон
-    public sealed class Logger : ILogger
+    public sealed class SimpleLogger : ILogger
     {
-        static Logger _logger;
-
+        static SimpleLogger _logger;
         String _status;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
-        Logger() { }
+        SimpleLogger() { }
 
         public String Status
         {
@@ -33,21 +31,12 @@ namespace FitghtingClub_WPF
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-       
-        public static Logger GetInstance()
+        public static ILogger GetInstance()
         {
-            _logger = _logger ?? new Logger();
+            _logger = _logger ?? new SimpleLogger();
             return _logger;
         }
 
-        public void Log(String data)
-        {
-            Status = data;
-        }
-
-        public void OnPropertyChanged()
-        {
-            throw new NotImplementedException();
-        }
+        public void Log(String data) => Status = data;
     }
 }

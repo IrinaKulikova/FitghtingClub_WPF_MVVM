@@ -1,4 +1,4 @@
-﻿<Window x:Class="FitghtingClub_WPF.MainWindow"
+﻿<Window x:Class="FitghtingClub_WPF.ViewGame"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:FitghtingClub_WPF"
         mc:Ignorable="d"
-        Title="Fighting Club" Height="830" Width="480" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Fighting Club" Height="830" Width="480" ResizeMode="NoResize">
     <Window.DataContext>
         <local:ViewModelGame/>
     </Window.DataContext>
@@ -17,20 +17,20 @@
         <sys:Double x:Key="widthPlayers">200</sys:Double>
         <Thickness x:Key="margin">8</Thickness>
         <Thickness x:Key="padding">8</Thickness>
-        <BitmapImage x:Key="head_man" UriSource="./Resources/head_man.png"/>
-        <BitmapImage x:Key="head_man_dead" UriSource="./Resources/head_man_dead.png"/>
-        <BitmapImage x:Key="head_woman" UriSource="./Resources/head_woman.png"/>
-        <BitmapImage x:Key="head_woman_dead" UriSource="./Resources/head_man_dead.png"/>
-        <BitmapImage x:Key="legs_man" UriSource="./Resources/legs_man.png"/>
-        <BitmapImage x:Key="legs_man_dead" UriSource="./Resources/legs_man_dead.png"/>
-        <BitmapImage x:Key="legs_woman" UriSource="./Resources/legs_woman.png"/>
-        <BitmapImage x:Key="legs_woman_dead" UriSource="./Resources/legs_woman_dead.png"/>
-        <BitmapImage x:Key="trunk_man" UriSource="./Resources/trunk_man.png"/>
-        <BitmapImage x:Key="trunk_man_dead" UriSource="./Resources/trunk_man_dead.png"/>
-        <BitmapImage x:Key="trunk_man_win" UriSource="./Resources/trunk_man_win.png"/>
-        <BitmapImage x:Key="trunk_woman" UriSource="./Resources/trunk_woman.png"/>
-        <BitmapImage x:Key="trunk_woman_dead" UriSource="./Resources/trunk_woman_dead.png"/>
-        <BitmapImage x:Key="trunk_woman_win" UriSource="./Resources/trunk_woman_win.png"/>
+        <BitmapImage x:Key="head_man" UriSource="/Resources/head_man.png"/>
+        <BitmapImage x:Key="head_man_dead" UriSource="/Resources/head_man_dead.png"/>
+        <BitmapImage x:Key="head_woman" UriSource="/Resources/head_woman.png"/>
+        <BitmapImage x:Key="head_woman_dead" UriSource="/Resources/head_man_dead.png"/>
+        <BitmapImage x:Key="legs_man" UriSource="/Resources/legs_man.png"/>
+        <BitmapImage x:Key="legs_man_dead" UriSource="/Resources/legs_man_dead.png"/>
+        <BitmapImage x:Key="legs_woman" UriSource="/Resources/legs_woman.png"/>
+        <BitmapImage x:Key="legs_woman_dead" UriSource="/Resources/legs_woman_dead.png"/>
+        <BitmapImage x:Key="trunk_man" UriSource="/Resources/trunk_man.png"/>
+        <BitmapImage x:Key="trunk_man_dead" UriSource="/Resources/trunk_man_dead.png"/>
+        <BitmapImage x:Key="trunk_man_win" UriSource="/Resources/trunk_man_win.png"/>
+        <BitmapImage x:Key="trunk_woman" UriSource="/Resources/trunk_woman.png"/>
+        <BitmapImage x:Key="trunk_woman_dead" UriSource="/Resources/trunk_woman_dead.png"/>
+        <BitmapImage x:Key="trunk_woman_win" UriSource="/Resources/trunk_woman_win.png"/>
         <Style TargetType="Image">
             <Setter Property="Width" Value="{StaticResource widthPlayers}"/>
             <Setter Property="Margin" Value="0"/>

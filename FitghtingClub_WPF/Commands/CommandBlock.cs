@@ -29,7 +29,7 @@ namespace FitghtingClub_WPF
         public void Execute(object parameter)
         {
             Game.GetInstance().Players[0].MakeBlock(part);
-            Logger.GetInstance().Log(Game.GetInstance().Players[0].Name + " set block " + part + " !");
+            SimpleLogger.GetInstance().Log(Game.GetInstance().Players[0].Name + " set block " + part + " !");
         }
     }
 }

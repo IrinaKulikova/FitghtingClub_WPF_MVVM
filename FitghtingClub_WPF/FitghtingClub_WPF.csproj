@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CommandEmpty.cs" />
     <Compile Include="Commands\CommandNewGame.cs" />
     <Compile Include="EventArgs\EventArgsProtected.cs" />
     <Compile Include="EventArgs\EventArgsDeath.cs" />
@@ -66,10 +67,15 @@
     <Compile Include="Commands\CommandBlock.cs" />
     <Compile Include="Commands\CommandHit.cs" />
     <Compile Include="Logger\ILogger.cs" />
-    <Compile Include="Logger\Logger.cs" />
+    <Compile Include="Logger\HistoryLogger.cs" />
+    <Compile Include="Logger\SimpleLogger.cs" />
     <Compile Include="Models\IGame.cs" />
-    <Compile Include="Views\ViewModelGame.cs" />
-    <Page Include="MainWindow.xaml">
+    <Compile Include="ViewModels\ViewModelGame.cs" />
+    <Compile Include="ViewModels\ViewModelLogger.cs" />
+    <Compile Include="Views\MainViewLogger.xaml.cs">
+      <DependentUpon>MainViewLogger.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\ViewGame.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -83,10 +89,14 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Enums\BodyPart.cs" />
     <Compile Include="Enums\HitPower.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Views\ViewGame.xaml.cs">
+      <DependentUpon>ViewGame.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MainViewLogger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

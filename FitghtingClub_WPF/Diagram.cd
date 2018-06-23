@@ -17,7 +17,7 @@
   <Class Name="FitghtingClub_WPF.Game">
     <Position X="6.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAAACAgAIAAAAQMQEEUAAAhACgAAAAhAgQwgIRAEQ=</HashCode>
+      <HashCode>AIAAAACAgAIAAAAQMQEEUAAAhACgAAAAhAgAwgIRAEQ=</HashCode>
       <FileName>Models\Game.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -70,7 +70,7 @@
     <Position X="11.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAgIAACGgAACAQCIIIAAAIAAoAAgIAQEAAQAgEIAEQQ=</HashCode>
-      <FileName>Views\ViewModelGame.cs</FileName>
+      <FileName>ViewModels\ViewModelGame.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -78,7 +78,7 @@
     <Position X="15.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MainWindow.xaml.cs</FileName>
+      <FileName>Views\ViewGame.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -100,7 +100,7 @@
   <Class Name="FitghtingClub_WPF.Logger">
     <Position X="17.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAAAAAEAAAAAAAAIAAAAAAApAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AEAAAAAEAAAAAAAAIAAAAAAApAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Logger\Logger.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

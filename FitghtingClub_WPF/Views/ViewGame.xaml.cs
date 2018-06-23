@@ -49,11 +49,15 @@ namespace FitghtingClub_WPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ViewGame : Window
     {
-        public MainWindow()
+        public bool DisaibleControl { get; set; }
+
+        public ViewGame(bool disaibleControl)
         {
             InitializeComponent();
+            DisaibleControl = disaibleControl;
+            (DataContext as ViewModelGame).IsAIPlayer = DisaibleControl;
         }
     }
 }
