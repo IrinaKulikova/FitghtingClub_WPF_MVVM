@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -7,21 +8,11 @@ using System.Threading.Tasks;
 
 namespace FitghtingClub_WPF
 {
-    public class ViewModelLogger:INotifyPropertyChanged
+    public class ViewModelLogger : INotifyPropertyChanged
     {
-        ILogger logger;
-
+        ILogger historyLogger;
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public String Log
-        {
-            get => logger.Status;
-            set
-            {
-                logger.Status = value;
-                OnPropertyChanged("Log");
-            }
-        }
+        public ObservableCollection<string> Messages { get; set; }
 
         private void OnPropertyChanged(string property)
         {
@@ -30,13 +21,14 @@ namespace FitghtingClub_WPF
 
         public ViewModelLogger()
         {
-            logger = HistoryLogger.GetInstance();
-            logger.PropertyChanged += Logger_PropertyChanged;
+            historyLogger = HistoryLogger.GetInstance();
+            Messages = new ObservableCollection<string>((historyLogger as HistoryLogger).Messages);
+            historyLogger.PropertyChanged += HistoryLogger_PropertyChanged;
         }
 
-        private void Logger_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void HistoryLogger_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            (logger as HistoryLogger).Messages.Add("");
+            //throw new NotImplementedException();
         }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:FitghtingClub_WPF"
         mc:Ignorable="d"
-        Title="Fighting Club" Height="830" Width="480" ResizeMode="NoResize">
+        Title="Fighting Club" Height="700" Width="480" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
     <Window.DataContext>
         <local:ViewModelGame/>
     </Window.DataContext>
@@ -198,7 +198,7 @@
                     <Label 
                         Grid.Column="2"
                         Name="time" 
-                        Content="{Binding Status}" />
+                        Content="{Binding Log}" />
                 </Grid>
 
                 <Grid Grid.Row="2">

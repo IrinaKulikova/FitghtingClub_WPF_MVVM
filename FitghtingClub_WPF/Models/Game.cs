@@ -75,7 +75,6 @@ namespace FitghtingClub_WPF
             return _game;
         }
 
-
         public void NewGame()
         {
             Round = 1;

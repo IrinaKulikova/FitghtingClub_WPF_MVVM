@@ -9,11 +9,25 @@ namespace FitghtingClub_WPF
 {
     public sealed class HistoryLogger : ILogger
     {
-        static HistoryLogger _logger;
-        public List<String> Messages { get; set; } = new List<string>();
-        public string Status { get; set; }
+        static ILogger _logger;
 
-        HistoryLogger() {}
+        public List<String> Messages { get; set; } = new List<string>();
+
+        private String _log;
+
+        public string Log
+        {
+            get => _log;
+            set
+            {
+                _log = "<" + DateTime.Now.ToLocalTime() + "> " + value;
+                Messages.Add(Log);
+                OnPropertyChanged("Messages");
+                OnPropertyChanged("Log");
+            }
+        }
+
+        HistoryLogger() { }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -25,15 +39,8 @@ namespace FitghtingClub_WPF
         public static ILogger GetInstance()
         {
             _logger = _logger ?? new HistoryLogger();
+            _logger.Log = "Start application";
             return _logger;
-        }
-
-        void ILogger.Log(string data)
-        {
-            Status = data;
-            Messages.Add(Status);
-            OnPropertyChanged("Messages");
-            OnPropertyChanged("Status");
         }
 
         public void Clear() => Messages.Clear();

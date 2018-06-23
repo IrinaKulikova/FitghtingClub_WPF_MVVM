@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitghtingClub_WPF"
         mc:Ignorable="d"
-        Title="Logger" Height="300" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Logger" Height="400" Width="360" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.DataContext>
         <local:ViewModelLogger/>
     </Window.DataContext>
     <Grid>
-        <Label Content="{Binding Log}"></Label>
+        <ListView ItemsSource="{Binding Messages}" IsEnabled="False"></ListView>
     </Grid>
 </Window>

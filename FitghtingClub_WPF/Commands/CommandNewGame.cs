@@ -31,6 +31,7 @@ namespace FitghtingClub_WPF
         public void Execute(object parameter)
         {
             Game.GetInstance().NewGame();
+            (HistoryLogger.GetInstance() as HistoryLogger).Clear();
             _canExecute = false;
         }
     }

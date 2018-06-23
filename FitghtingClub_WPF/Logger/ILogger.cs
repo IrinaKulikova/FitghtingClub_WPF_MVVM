@@ -9,7 +9,6 @@ namespace FitghtingClub_WPF
 {
     public interface ILogger : INotifyPropertyChanged
     {
-        String Status { get; set; }
-        void Log(String data);
+        String Log { get; set; }
     }
 }

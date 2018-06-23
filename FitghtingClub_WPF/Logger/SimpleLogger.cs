@@ -10,19 +10,19 @@ namespace FitghtingClub_WPF
     //синглетон
     public sealed class SimpleLogger : ILogger
     {
-        static SimpleLogger _logger;
-        String _status;
+        static ILogger _logger;
+        String _log;
         public event PropertyChangedEventHandler PropertyChanged;
 
         SimpleLogger() { }
 
-        public String Status
+        public String Log
         {
-            get => _status;
+            get => _log;
             set
             {
-                _status = value;
-                OnPropertyChanged("Status");
+                _log = value;
+                OnPropertyChanged("Log");
             }
         }
 
@@ -36,7 +36,5 @@ namespace FitghtingClub_WPF
             _logger = _logger ?? new SimpleLogger();
             return _logger;
         }
-
-        public void Log(String data) => Status = data;
     }
 }
