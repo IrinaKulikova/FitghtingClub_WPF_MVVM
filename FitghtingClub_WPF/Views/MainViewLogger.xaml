@@ -10,6 +10,15 @@
         <local:ViewModelLogger/>
     </Window.DataContext>
     <Grid>
-        <ListView ItemsSource="{Binding Messages}" IsEnabled="False"></ListView>
+        <ListView ItemsSource="{Binding Messages}" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+            <ListView.View>                
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header=" Date time " Width="150" DisplayMemberBinding="{Binding Time}"></GridViewColumn>
+                        <GridViewColumn Header=" Massege " Width="180" DisplayMemberBinding="{Binding Text}"></GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

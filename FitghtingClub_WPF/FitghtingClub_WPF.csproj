@@ -68,6 +68,7 @@
     <Compile Include="Commands\CommandHit.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\HistoryLogger.cs" />
+    <Compile Include="Logger\Massege.cs" />
     <Compile Include="Logger\SimpleLogger.cs" />
     <Compile Include="Models\IGame.cs" />
     <Compile Include="ViewModels\ViewModelGame.cs" />

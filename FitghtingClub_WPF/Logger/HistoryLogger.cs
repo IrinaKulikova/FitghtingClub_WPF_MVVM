@@ -11,7 +11,7 @@ namespace FitghtingClub_WPF
     {
         static ILogger _logger;
 
-        public List<String> Messages { get; set; } = new List<string>();
+        public List<Message> Messages { get; set; } = new List<Message>();
 
         private String _log;
 
@@ -20,10 +20,10 @@ namespace FitghtingClub_WPF
             get => _log;
             set
             {
-                _log = "<" + DateTime.Now.ToLocalTime() + "> " + value;
-                Messages.Add(Log);
-                OnPropertyChanged("Messages");
+                _log = value;
+                Messages.Add(new Message(value));
                 OnPropertyChanged("Log");
+                OnPropertyChanged("Messages");
             }
         }
 
@@ -39,7 +39,6 @@ namespace FitghtingClub_WPF
         public static ILogger GetInstance()
         {
             _logger = _logger ?? new HistoryLogger();
-            _logger.Log = "Start application";
             return _logger;
         }
 

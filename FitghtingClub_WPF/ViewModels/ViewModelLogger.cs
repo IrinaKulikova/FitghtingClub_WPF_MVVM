@@ -12,7 +12,7 @@ namespace FitghtingClub_WPF
     {
         ILogger historyLogger;
         public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableCollection<string> Messages { get; set; }
+        public ObservableCollection<Message> Messages { get; set; }
 
         private void OnPropertyChanged(string property)
         {
@@ -22,13 +22,14 @@ namespace FitghtingClub_WPF
         public ViewModelLogger()
         {
             historyLogger = HistoryLogger.GetInstance();
-            Messages = new ObservableCollection<string>((historyLogger as HistoryLogger).Messages);
+            Messages = new ObservableCollection<Message>((historyLogger as HistoryLogger).Messages);
             historyLogger.PropertyChanged += HistoryLogger_PropertyChanged;
         }
 
         private void HistoryLogger_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            //throw new NotImplementedException();
+           // Messages.Add(new Message((sender as HistoryLogger).Log));
+            OnPropertyChanged(e.PropertyName);
         }
     }
 }
