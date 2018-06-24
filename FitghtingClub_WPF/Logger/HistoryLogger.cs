@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,11 @@ namespace FitghtingClub_WPF
                 _log = value;
                 OnPropertyChanged("Log");
                 Messages.Add(new Message(_log));
+
+                using (StreamWriter writer = new StreamWriter("log.txt", true))
+                {
+                    writer.WriteLine(Log);
+                }
             }
         }
 

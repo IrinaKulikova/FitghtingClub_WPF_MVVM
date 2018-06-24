@@ -11,7 +11,6 @@
         <local:ViewModelGame/>
     </Window.DataContext>
     <Window.Resources>
-        <!--<sys:Double x:Key="sizeFont">16</sys:Double>-->
         <Style TargetType="Image">
             <Setter Property="Width" Value="{StaticResource widthPlayers}"/>
             <Setter Property="Margin" Value="0"/>
@@ -195,6 +194,7 @@
                 </Grid>
 
                 <Button 
+                    IsDefault="True"
                     Name="buttonNewGame"
                     Command="{Binding CommandNewGame}" 
                     FontSize="{StaticResource sizeFont}" 

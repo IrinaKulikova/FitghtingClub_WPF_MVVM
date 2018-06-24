@@ -19,15 +19,24 @@ namespace FitghtingClub_WPF
     /// </summary>
     public partial class MainViewLogger : Window
     {
+        List<Window> views = new List<Window>();
         public MainViewLogger()
         {
             InitializeComponent();
             WindowGetName getName = new WindowGetName();
             getName.ShowDialog();
-            ViewGame windowPlayer = new ViewGame(false) { Left = 100, Top = 100 };
+            Window windowPlayer = new ViewGame() { Left = 100, Top = 100 };
             windowPlayer.Show();
-            ViewGame windowAIPlayer = new ViewGame(true) { Left = 1020, Top = 100 };
+            Window windowAIPlayer = new ViewGame() { Left = 1020, Top = 100 };
             windowAIPlayer.Show();
+            views.Add(windowPlayer);
+            views.Add(windowAIPlayer);
+            Closed += MainViewLogger_Closed;
+        }
+
+        private void MainViewLogger_Closed(object sender, EventArgs e)
+        {
+            foreach (Window window in views) window.Close();
         }
     }
 }

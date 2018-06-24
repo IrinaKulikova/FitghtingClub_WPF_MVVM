@@ -36,6 +36,6 @@
         </Grid.RowDefinitions>
         <Label Content="Enter Your name, please"></Label>
         <TextBox Name="playerName" Text="{Binding PlayerName}"  Grid.Row="1"></TextBox>
-        <Button Grid.Row="2" Click="Button_Click" >Save My name</Button>
+        <Button Grid.Row="2" Click="Button_Click" IsDefault="True">Save My name</Button>
     </Grid>
 </Window>
