@@ -21,13 +21,15 @@ namespace FitghtingClub_WPF
             set
             {
                 _log = value;
-                Messages.Add(new Message(value));
                 OnPropertyChanged("Log");
-                OnPropertyChanged("Messages");
+                Messages.Add(new Message(_log));
             }
         }
 
-        HistoryLogger() { }
+        HistoryLogger()
+        {
+            Log = "Start application";
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -12,7 +12,6 @@ namespace FitghtingClub_WPF
 {
     class ViewModelGame : INotifyPropertyChanged
     {
-        private ILogger _logger;
         private IGame _game;
 
         //поле хранит данные для кого отображается игра, для Player или AIPlayer
@@ -29,17 +28,7 @@ namespace FitghtingClub_WPF
                 OnPropertyChanged("CurrentPlayer");
             }
         }
-
-        public String Log
-        {
-            get => _logger.Log;
-            set
-            {
-                _logger.Log = value;
-                OnPropertyChanged("Log");
-            }
-        }
-
+        
         public String CurrentPlayerName
         {
             get => _game.Players[CurrentPlayer].Name;
@@ -161,47 +150,9 @@ namespace FitghtingClub_WPF
         public ViewModelGame()
         {
             _game = Game.GetInstance();
-            _logger = HistoryLogger.GetInstance();
-            _logger.PropertyChanged += Model_PropertyChanged;
-            _game.PropertyChanged += Model_PropertyChanged;
-            _game.NewGameEvent += _game_NewGameEvent;
-            _game.BlockEvent += _game_BlockEvent;
-            _game.DeathEvent += _game_DeathEvent;
-            _game.WoundEvent += _game_WoundEvent;
-            _game.ProtectedEvent += _game_ProtectedEvent;
             Players = new ObservableCollection<BasePlayer>(_game.Players);
         }
-
-        private void _game_WoundEvent(object sender, EventArgsWound e)
-        {
-            _logger.Log = (sender as BasePlayer).Name + " hit in the " + e.Part;
-        }
-
-        private void _game_ProtectedEvent(object sender, EventArgsProtected e)
-        {
-            _logger.Log = (sender as BasePlayer).Name + " protected " + e.Part;
-        }
-
-        private void _game_NewGameEvent(object sender, EventArgs e)
-        {
-            _logger.Log = "New game!";
-        }
-
-        private void _game_DeathEvent(object sender, EventArgsDeath e)
-        {
-            _logger.Log = (sender as BasePlayer).Name + " died!!!";
-        }
-
-        private void _game_BlockEvent(object sender, EventArgsBlock e)
-        {
-            _logger.Log = (sender as BasePlayer).Name + " set block " + e.Part;
-        }
-
-        private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            OnPropertyChanged(e.PropertyName);
-        }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {

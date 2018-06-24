@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:FitghtingClub_WPF"
         mc:Ignorable="d"
-        Title="Fighting Club" Height="700" Width="480" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+        Title="Fighting Club" Height="650" Width="480" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
     <Window.DataContext>
         <local:ViewModelGame/>
     </Window.DataContext>
@@ -53,7 +53,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="225"/>
+            <RowDefinition Height="180"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid>
@@ -173,7 +173,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
+                    <!--<RowDefinition/>-->
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid>
@@ -184,11 +184,10 @@
                     <Label Content="Player's Name:"/>
                     <Label
                          Grid.Column="1"
-                         Name="loger"
                          Content="{Binding CurrentPlayerName}"/>
                 </Grid>
 
-                <Grid Grid.Row="1">
+                <!--<Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
@@ -199,9 +198,9 @@
                         Grid.Column="2"
                         Name="time" 
                         Content="{Binding Log}" />
-                </Grid>
+                </Grid>-->
 
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>

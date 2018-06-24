@@ -14,6 +14,7 @@ namespace FitghtingClub_WPF
     public sealed class Game : IGame, INotifyPropertyChanged
     {
         public event EventHandler<EventArgsDeath> DeathEvent;
+        public event EventHandler<EventArgsHit> HitEvent;
         public event EventHandler<EventArgsWound> WoundEvent;
         public event EventHandler<EventArgsBlock> BlockEvent;
         public event EventHandler<EventArgsProtected> ProtectedEvent;
@@ -121,17 +122,25 @@ namespace FitghtingClub_WPF
 
         private void PauseHit_Tick(object sender, EventArgs e)
         {
-            Players[CurrentPlayer].MakeHit(BodyPart.Head);
-            pauseHit.Stop();
+            if (IsNotOver)
+            {
+                Players[CurrentPlayer].MakeHit(BodyPart.Head);
+                pauseHit.Stop();
+
+                //HitEvent?.Invoke(Players[1], new EventArgsHit());
+            }
         }
 
         private void PauseBlock_Tick(object sender, EventArgs e)
         {
-            Players[CurrentPlayer].MakeBlock(BodyPart.Head);
-            pauseBlock.Stop();
+            if (IsNotOver)
+            {
+                Players[CurrentPlayer].MakeBlock(BodyPart.Head);
+                pauseBlock.Stop();
 
-            //debug
-            BlockEvent?.Invoke(Players[1], new EventArgsBlock(Players[1].Blocked));
+                //debug
+                BlockEvent?.Invoke(Players[1], new EventArgsBlock(Players[1].Blocked));
+            }
         }
 
         private void Game_HitEvent(object sender, EventArgsHit e)
@@ -140,10 +149,7 @@ namespace FitghtingClub_WPF
             {
                 WoundEvent?.Invoke(sender, new EventArgsWound(e.Part, e.Power));
                 (sender as BasePlayer).HaveToSetHit = false;
-                if (IsNotOver)
-                {
-                    Play();
-                }
+                Play();
             }
         }
 
