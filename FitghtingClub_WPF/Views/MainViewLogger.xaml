@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitghtingClub_WPF"
         mc:Ignorable="d"
-        Title="Logger" Height="400" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Logger" Height="400" Width="420" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.DataContext>
         <local:ViewModelLogger/>
     </Window.DataContext>
@@ -20,7 +20,7 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header=" Date time " Width="150" DisplayMemberBinding="{Binding Time}"></GridViewColumn>
-                        <GridViewColumn Header=" Massege " Width="250" DisplayMemberBinding="{Binding Text}"></GridViewColumn>
+                        <GridViewColumn Header=" Massege " Width="270" DisplayMemberBinding="{Binding Text}"></GridViewColumn>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

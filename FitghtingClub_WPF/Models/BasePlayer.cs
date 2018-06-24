@@ -13,6 +13,7 @@ namespace FitghtingClub_WPF
     {
         public event EventHandler<EventArgsHit> HitEvent;
         public event EventHandler<EventArgsBlock> BlockEvent;
+        public event EventHandler<EventArgsWound> WoundEvent;
         public event EventHandler<EventArgsProtected> ProtectedEvent;
         public event EventHandler<EventArgsDeath> DeathEvent;
 
@@ -98,6 +99,7 @@ namespace FitghtingClub_WPF
                 if (e.Part != Blocked)
                 {
                     HealthPoints -= e.Power;
+                    WoundEvent?.Invoke(this, new EventArgsWound(e.Part, e.Power));
 
                     if (HealthPoints <= 0)
                     {

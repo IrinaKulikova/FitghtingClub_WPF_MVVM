@@ -15,6 +15,7 @@ namespace FitghtingClub_WPF
     {
         public event EventHandler<EventArgsDeath> DeathEvent;
         public event EventHandler<EventArgsWound> WoundEvent;
+        public event EventHandler<EventArgsWound> GetHitEvent;
         public event EventHandler<EventArgsBlock> BlockEvent;
         public event EventHandler<EventArgsProtected> ProtectedEvent;
         public event EventHandler NewGameEvent;
@@ -103,15 +104,21 @@ namespace FitghtingClub_WPF
                 player.BlockEvent += Game_BlockEvent;
                 player.DeathEvent += Game_DeathEvent;
                 player.HitEvent += Game_HitEvent;
+                player.WoundEvent += Player_WoundEvent;
                 player.ProtectedEvent += Player_ProtectedEvent;
                 _game.NewGameEvent += player.NewGame;
-                _game.WoundEvent += player.GetHit;
+                _game.GetHitEvent += player.GetHit;
             }
 
             pauseHit.Interval = 2000;
             pauseBlock.Interval = 2000;
             pauseBlock.Tick += PauseBlock_Tick;
             pauseHit.Tick += PauseHit_Tick;
+        }
+
+        private void Player_WoundEvent(object sender, EventArgsWound e)
+        {
+            WoundEvent?.Invoke(sender, e);
         }
 
         private void Player_ProtectedEvent(object sender, EventArgsProtected e)
@@ -141,7 +148,7 @@ namespace FitghtingClub_WPF
         {
             if (sender is BasePlayer)
             {
-                WoundEvent?.Invoke(sender, new EventArgsWound(e.Part, e.Power));
+                GetHitEvent?.Invoke(sender, new EventArgsWound(e.Part, e.Power));
                 (sender as BasePlayer).HaveToSetHit = false;
                 Play();
             }

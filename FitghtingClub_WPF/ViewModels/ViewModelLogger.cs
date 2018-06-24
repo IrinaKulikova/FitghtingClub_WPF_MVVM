@@ -40,7 +40,7 @@ namespace FitghtingClub_WPF
 
         private void _game_WoundEvent(object sender, EventArgsWound e)
         {
-            _historyLogger.Log = (sender as BasePlayer).Name + " hit in the " + e.Part +" with power "+ e.Power;
+            _historyLogger.Log = (sender as BasePlayer).Name + " got hit in the " + e.Part +" with power "+ e.Power;
         }
 
         private void _game_ProtectedEvent(object sender, EventArgsProtected e)
