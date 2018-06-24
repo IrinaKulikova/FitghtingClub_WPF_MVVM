@@ -19,6 +19,7 @@ namespace FitghtingClub_WPF
         void Play();
         void NextPlayer();
         int CurrentPlayer { get; set; }
+        void SetName(String name);
         List<BasePlayer> Players { get; set; }
         int Round { get; set; }
     }

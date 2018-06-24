@@ -11,26 +11,7 @@
         <local:ViewModelGame/>
     </Window.DataContext>
     <Window.Resources>
-        <sys:Double x:Key="sizeFont">16</sys:Double>
-        <sys:Double x:Key="widthButtons">120</sys:Double>
-        <sys:Double x:Key="heightButtons">36</sys:Double>
-        <sys:Double x:Key="widthPlayers">200</sys:Double>
-        <Thickness x:Key="margin">8</Thickness>
-        <Thickness x:Key="padding">8</Thickness>
-        <BitmapImage x:Key="head_man" UriSource="/Resources/head_man.png"/>
-        <BitmapImage x:Key="head_man_dead" UriSource="/Resources/head_man_dead.png"/>
-        <BitmapImage x:Key="head_woman" UriSource="/Resources/head_woman.png"/>
-        <BitmapImage x:Key="head_woman_dead" UriSource="/Resources/head_man_dead.png"/>
-        <BitmapImage x:Key="legs_man" UriSource="/Resources/legs_man.png"/>
-        <BitmapImage x:Key="legs_man_dead" UriSource="/Resources/legs_man_dead.png"/>
-        <BitmapImage x:Key="legs_woman" UriSource="/Resources/legs_woman.png"/>
-        <BitmapImage x:Key="legs_woman_dead" UriSource="/Resources/legs_woman_dead.png"/>
-        <BitmapImage x:Key="trunk_man" UriSource="/Resources/trunk_man.png"/>
-        <BitmapImage x:Key="trunk_man_dead" UriSource="/Resources/trunk_man_dead.png"/>
-        <BitmapImage x:Key="trunk_man_win" UriSource="/Resources/trunk_man_win.png"/>
-        <BitmapImage x:Key="trunk_woman" UriSource="/Resources/trunk_woman.png"/>
-        <BitmapImage x:Key="trunk_woman_dead" UriSource="/Resources/trunk_woman_dead.png"/>
-        <BitmapImage x:Key="trunk_woman_win" UriSource="/Resources/trunk_woman_win.png"/>
+        <!--<sys:Double x:Key="sizeFont">16</sys:Double>-->
         <Style TargetType="Image">
             <Setter Property="Width" Value="{StaticResource widthPlayers}"/>
             <Setter Property="Margin" Value="0"/>

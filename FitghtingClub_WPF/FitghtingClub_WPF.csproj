@@ -76,6 +76,9 @@
     <Compile Include="Views\MainViewLogger.xaml.cs">
       <DependentUpon>MainViewLogger.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WindowGetName.xaml.cs">
+      <DependentUpon>WindowGetName.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\ViewGame.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -95,6 +98,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\MainViewLogger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowGetName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

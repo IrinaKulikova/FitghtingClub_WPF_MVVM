@@ -13,7 +13,15 @@ namespace FitghtingClub_WPF
     class ViewModelGame : INotifyPropertyChanged
     {
         private IGame _game;
-
+        private String _playerName;
+        public String PlayerName {
+            get=>_playerName;
+            set
+            {
+                _playerName = value;
+                OnPropertyChanged("PlayerName");
+            }
+        }
         //поле хранит данные для кого отображается игра, для Player или AIPlayer
         public bool IsAIPlayer { get; set; }
 
@@ -150,6 +158,7 @@ namespace FitghtingClub_WPF
         public ViewModelGame()
         {
             _game = Game.GetInstance();
+            _game.SetName(PlayerName);
             Players = new ObservableCollection<BasePlayer>(_game.Players);
             _game.PropertyChanged += _game_PropertyChanged;
         }

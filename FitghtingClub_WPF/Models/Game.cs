@@ -87,6 +87,11 @@ namespace FitghtingClub_WPF
             Play();
         }
 
+        public void SetName(String name)
+        {
+            Players[0].Name = name;
+        }
+
 
         Game()
         {
