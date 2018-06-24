@@ -72,6 +72,7 @@
     <Compile Include="Logger\SimpleLogger.cs" />
     <Compile Include="Models\IGame.cs" />
     <Compile Include="ViewModels\ViewModelGame.cs" />
+    <Compile Include="ViewModels\ViewModelGetName.cs" />
     <Compile Include="ViewModels\ViewModelLogger.cs" />
     <Compile Include="Views\MainViewLogger.xaml.cs">
       <DependentUpon>MainViewLogger.xaml</DependentUpon>

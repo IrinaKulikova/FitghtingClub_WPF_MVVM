@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:FitghtingClub_WPF"
         mc:Ignorable="d"
         Title="Get Name" Height="200" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Window.Resources>        
+    <Window.DataContext>
+        <local:ViewModelGetName/>
+    </Window.DataContext>
+    <Window.Resources>             
         <Style TargetType="Button">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="150"/>
@@ -32,7 +35,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Content="Enter Your name, please"></Label>
-        <TextBox Name="playerName" Grid.Row="1"></TextBox>
+        <TextBox Name="playerName" Text="{Binding PlayerName}"  Grid.Row="1"></TextBox>
         <Button Grid.Row="2" Click="Button_Click" >Save My name</Button>
     </Grid>
 </Window>

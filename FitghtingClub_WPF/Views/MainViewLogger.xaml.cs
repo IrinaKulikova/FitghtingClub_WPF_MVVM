@@ -24,10 +24,9 @@ namespace FitghtingClub_WPF
             InitializeComponent();
             WindowGetName getName = new WindowGetName();
             getName.ShowDialog();
-            String name = getName.NamePlayer;
-            ViewGame windowPlayer = new ViewGame(false,name) { Left = 100, Top = 100 };
+            ViewGame windowPlayer = new ViewGame(false) { Left = 100, Top = 100 };
             windowPlayer.Show();
-            ViewGame windowAIPlayer = new ViewGame(true, name) { Left = 1020, Top = 100 };
+            ViewGame windowAIPlayer = new ViewGame(true) { Left = 1020, Top = 100 };
             windowAIPlayer.Show();
         }
     }

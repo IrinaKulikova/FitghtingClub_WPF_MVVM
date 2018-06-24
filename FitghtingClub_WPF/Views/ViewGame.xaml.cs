@@ -51,14 +51,10 @@ namespace FitghtingClub_WPF
     /// </summary>
     public partial class ViewGame : Window
     {
-        //public bool DisaibleControl { get; set; }
-
-        public ViewGame(bool disaibleControl, String playerName)
+        public ViewGame(bool disaibleControl)
         {
             InitializeComponent();
-            //DisaibleControl = disaibleControl;
             (DataContext as ViewModelGame).IsAIPlayer = disaibleControl;
-            (DataContext as ViewModelGame).PlayerName = playerName;
         }
     }
 }
