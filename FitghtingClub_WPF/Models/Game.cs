@@ -14,7 +14,6 @@ namespace FitghtingClub_WPF
     public sealed class Game : IGame, INotifyPropertyChanged
     {
         public event EventHandler<EventArgsDeath> DeathEvent;
-        public event EventHandler<EventArgsHit> HitEvent;
         public event EventHandler<EventArgsWound> WoundEvent;
         public event EventHandler<EventArgsBlock> BlockEvent;
         public event EventHandler<EventArgsProtected> ProtectedEvent;
@@ -126,8 +125,6 @@ namespace FitghtingClub_WPF
             {
                 Players[CurrentPlayer].MakeHit(BodyPart.Head);
                 pauseHit.Stop();
-
-                //HitEvent?.Invoke(Players[1], new EventArgsHit());
             }
         }
 
@@ -137,9 +134,6 @@ namespace FitghtingClub_WPF
             {
                 Players[CurrentPlayer].MakeBlock(BodyPart.Head);
                 pauseBlock.Stop();
-
-                //debug
-                BlockEvent?.Invoke(Players[1], new EventArgsBlock(Players[1].Blocked));
             }
         }
 
@@ -157,23 +151,22 @@ namespace FitghtingClub_WPF
         {
             if (sender is BasePlayer)
             {
-                DeathEvent?.Invoke(sender as BasePlayer, new EventArgsDeath());
                 foreach (BasePlayer player in Players)
                 {
                     player.HaveToSetBlock = false;
                     player.HaveToSetHit = false;
                 }
                 IsNotOver = false;
+                DeathEvent?.Invoke(sender as BasePlayer, new EventArgsDeath());
             }
-            DeathEvent?.Invoke(sender, e);
         }
-
 
         private void Game_BlockEvent(object sender, EventArgsBlock e)
         {
             if (sender is BasePlayer)
             {
                 (sender as BasePlayer).HaveToSetBlock = false;
+                BlockEvent?.Invoke(Players[CurrentPlayer], new EventArgsBlock(Players[CurrentPlayer].Blocked));
                 NextPlayer();
                 Players[CurrentPlayer].HaveToSetHit = true;
                 if (Players[CurrentPlayer] is AIPlayer)

@@ -28,7 +28,7 @@ namespace FitghtingClub_WPF
                 OnPropertyChanged("CurrentPlayer");
             }
         }
-        
+
         public String CurrentPlayerName
         {
             get => _game.Players[CurrentPlayer].Name;
@@ -151,8 +151,14 @@ namespace FitghtingClub_WPF
         {
             _game = Game.GetInstance();
             Players = new ObservableCollection<BasePlayer>(_game.Players);
+            _game.PropertyChanged += _game_PropertyChanged;
         }
-        
+
+        private void _game_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(e.PropertyName);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {

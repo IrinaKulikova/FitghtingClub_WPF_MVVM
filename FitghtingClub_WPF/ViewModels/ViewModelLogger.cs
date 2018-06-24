@@ -31,8 +31,7 @@ namespace FitghtingClub_WPF
             _game.WoundEvent += _game_WoundEvent;
             _game.ProtectedEvent += _game_ProtectedEvent;
         }
-
-        
+                
         private void HistoryLogger_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             Messages.Add(new Message((sender as HistoryLogger).Log));
@@ -41,7 +40,7 @@ namespace FitghtingClub_WPF
 
         private void _game_WoundEvent(object sender, EventArgsWound e)
         {
-            _historyLogger.Log = (sender as BasePlayer).Name + " hit in the " + e.Part;
+            _historyLogger.Log = (sender as BasePlayer).Name + " hit in the " + e.Part +" with power "+ e.Power;
         }
 
         private void _game_ProtectedEvent(object sender, EventArgsProtected e)

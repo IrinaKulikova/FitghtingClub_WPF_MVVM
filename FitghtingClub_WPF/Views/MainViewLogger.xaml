@@ -5,17 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitghtingClub_WPF"
         mc:Ignorable="d"
-        Title="Logger" Height="400" Width="360" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Logger" Height="400" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.DataContext>
         <local:ViewModelLogger/>
     </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="IsEnabled" Value="False"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <ListView ItemsSource="{Binding Messages}" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.View>                
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header=" Date time " Width="150" DisplayMemberBinding="{Binding Time}"></GridViewColumn>
-                        <GridViewColumn Header=" Massege " Width="180" DisplayMemberBinding="{Binding Text}"></GridViewColumn>
+                        <GridViewColumn Header=" Massege " Width="250" DisplayMemberBinding="{Binding Text}"></GridViewColumn>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

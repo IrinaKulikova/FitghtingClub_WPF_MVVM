@@ -22,9 +22,9 @@ namespace FitghtingClub_WPF
         public MainViewLogger()
         {
             InitializeComponent();
-            ViewGame windowPlayer = new ViewGame(false);
+            ViewGame windowPlayer = new ViewGame(false) { Left = 120, Top = 100 };
             windowPlayer.Show();
-            ViewGame windowAIPlayer = new ViewGame(true);
+            ViewGame windowAIPlayer = new ViewGame(true) { Left = 1000, Top = 100 };
             windowAIPlayer.Show();
         }
     }
