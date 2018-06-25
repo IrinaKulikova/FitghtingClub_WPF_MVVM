@@ -19,7 +19,7 @@ namespace FitghtingClub_WPF
 
         public override void MakeHit(BodyPart part)
         {
-            Hit(this, new EventArgsHit(part, new Random().Next((int)HitPower.Min, (int)HitPower.Max)));
+            Hit(this, new EventArgsHit(part, random.Next((int)HitPower.Min, (int)HitPower.Max)));
         }
     }
 }

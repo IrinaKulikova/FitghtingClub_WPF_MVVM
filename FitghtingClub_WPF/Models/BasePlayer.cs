@@ -23,6 +23,7 @@ namespace FitghtingClub_WPF
         public const int MAX_POINTS = 100;
         public event PropertyChangedEventHandler PropertyChanged;
 
+        protected Random random = new Random();
 
         public string Name
         {

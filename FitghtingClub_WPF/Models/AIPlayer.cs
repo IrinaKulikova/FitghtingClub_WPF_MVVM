@@ -13,14 +13,14 @@ namespace FitghtingClub_WPF
 
         public override void MakeBlock(BodyPart part)
         {
-            Blocked = ((BodyPart)new Random().Next((int)BodyPart.Head, (int)BodyPart.Legs + 1));
+            Blocked = ((BodyPart)random.Next((int)BodyPart.Head, (int)BodyPart.Legs + 1));
             Block(this, new EventArgsBlock(Blocked));
         }
 
         public override void MakeHit(BodyPart part)
         {
-            part = ((BodyPart)new Random().Next((int)BodyPart.Head, (int)BodyPart.Legs + 1));
-            int power = (new Random().Next((int)HitPower.Min, (int)HitPower.Max));
+            part = ((BodyPart)random.Next((int)BodyPart.Head, (int)BodyPart.Legs + 1));
+            int power = (random.Next((int)HitPower.Min, (int)HitPower.Max));
             Hit(this, new EventArgsHit(part, power));
         }
     }
