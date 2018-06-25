@@ -7,14 +7,8 @@ using System.Threading.Tasks;
 
 namespace FitghtingClub_WPF
 {
-    interface IGame : INotifyPropertyChanged
+    interface IGame
     {
-        event EventHandler<EventArgsDeath> DeathEvent;
-        event EventHandler<EventArgsWound> WoundEvent;
-        event EventHandler<EventArgsBlock> BlockEvent;
-        event EventHandler<EventArgsProtected> ProtectedEvent;
-        event EventHandler NewGameEvent;
-
         void NewGame();
         void Play();
         void NextPlayer();

@@ -51,9 +51,10 @@ namespace FitghtingClub_WPF
     /// </summary>
     public partial class ViewGame : Window
     {
-        public ViewGame()
+        public ViewGame(bool isAIPlayer)
         {
             InitializeComponent();
+            DataContext = new ViewModelGame(isAIPlayer);
         }
     }
 }

@@ -157,14 +157,12 @@ namespace FitghtingClub_WPF
             }
         }
 
-        public ViewModelGame()
+        public ViewModelGame(bool isAIPlayer)
         {
             _game = Game.GetInstance();
-            IsAIPlayer = Properties.Settings.Default.TypePlayer;
-            Properties.Settings.Default.TypePlayer = !Properties.Settings.Default.TypePlayer;
-            Properties.Settings.Default.Save();
+            IsAIPlayer = isAIPlayer;
             Players = new ObservableCollection<BasePlayer>(_game.Players);
-            _game.PropertyChanged += _game_PropertyChanged;
+            (_game as Game).PropertyChanged += _game_PropertyChanged;
         }
 
         private void _game_PropertyChanged(object sender, PropertyChangedEventArgs e)

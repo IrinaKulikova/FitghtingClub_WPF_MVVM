@@ -25,9 +25,13 @@ namespace FitghtingClub_WPF
             InitializeComponent();
             WindowGetName getName = new WindowGetName();
             getName.ShowDialog();
-            Window windowPlayer = new ViewGame() { Left = 100, Top = 100 };
+            Window windowPlayer = new ViewGame(false);
+            windowPlayer.Left = (SystemParameters.PrimaryScreenWidth / 2 - Width / 2 - windowPlayer.Width);
+            windowPlayer.Top = 100;
             windowPlayer.Show();
-            Window windowAIPlayer = new ViewGame() { Left = 1020, Top = 100 };
+            Window windowAIPlayer = new ViewGame(true);
+            windowAIPlayer.Left = (SystemParameters.PrimaryScreenWidth + Width) / 2;
+            windowAIPlayer.Top = 100;
             windowAIPlayer.Show();
             views.Add(windowPlayer);
             views.Add(windowAIPlayer);

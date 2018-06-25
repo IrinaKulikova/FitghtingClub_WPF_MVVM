@@ -25,13 +25,13 @@ namespace FitghtingClub_WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool TypePlayer {
+        [global::System.Configuration.DefaultSettingValueAttribute("Player")]
+        public string Name {
             get {
-                return ((bool)(this["TypePlayer"]));
+                return ((string)(this["Name"]));
             }
             set {
-                this["TypePlayer"] = value;
+                this["Name"] = value;
             }
         }
     }

@@ -8,9 +8,9 @@
         mc:Ignorable="d"
         xmlns:p="clr-namespace:FitghtingClub_WPF.Properties"
         Title="Fighting Club" Height="650" Width="480" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <local:ViewModelGame/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Window.Resources>
         <Style TargetType="Image">
             <Setter Property="Width" Value="{StaticResource widthPlayers}"/>

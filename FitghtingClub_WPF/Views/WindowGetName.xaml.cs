@@ -19,17 +19,16 @@ namespace FitghtingClub_WPF
     /// </summary>
     public partial class WindowGetName : Window
     {
-        public String NamePlayer { get; set; }
-
         public WindowGetName()
         {
             InitializeComponent();
-            NamePlayer = "Player";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NamePlayer = playerName.Text;
+            Properties.Settings.Default.Name = playerName.Text;
+            Properties.Settings.Default.Save();
+            Game.GetInstance().SetName(Properties.Settings.Default.Name);
             Close();
         }
     }
